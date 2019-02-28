@@ -1,0 +1,50 @@
+#
+# This file contains overrides for the RuboCop (https://github.com/bbatsov/rubocop) Ruby static code analyser.
+#
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundMethodBody:
+  Enabled: false
+
+Layout/TrailingBlankLines:
+  Enabled: false
+
+Layout/TrailingWhitespace:
+  Enabled: false
+
+Lint/UselessAssignment:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 40
+
+Metrics/ClassLength:
+  Max: 400
+
+Metrics/LineLength:
+  Max: 300
+
+Metrics/MethodLength:
+  Max: 30
+
+Metrics/ParameterLists:
+  Max: 6
+
+Metrics/BlockNesting:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/TrivialAccessors:
+  Enabled: false
+
+Style/Next:
+  Enabled: false
