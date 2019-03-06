@@ -20,9 +20,6 @@ CENSUS_HRHUB_HOST = ENV['CENSUS_HRHUB_SERVICE_HOST'] || 'localhost'
 CENSUS_HRHUB_PORT = ENV['CENSUS_HRHUB_SERVICE_PORT'] || '5678'
 
 puts (CENSUS_HRHUB_HOST)
-# set :security_user_name,     ENV['security_user_name']
-# set :security_user_password, ENV['security_user_password']
-# set :protocol,               ENV['CENSUS_HRHUB_PROTOCOL']
 
 # Set global pagination options.
 WillPaginate.per_page = 20
@@ -59,7 +56,7 @@ end
 
 # Get Field Worker Details
 get '/fieldforce/:fieldworkerid' do |fieldworkerid|
-
+  fieldworker = []
   RestClient::Request.execute(method: :get,
                               url: "http://" + CENSUS_HRHUB_HOST + ":" + CENSUS_HRHUB_PORT + "/fieldforce/byId/#{fieldworkerid}"
                               #url: "http://localhost:5678/fieldforce/byId/#{fieldworkerid}"
