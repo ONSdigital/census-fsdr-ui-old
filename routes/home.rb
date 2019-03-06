@@ -16,8 +16,10 @@ require_relative '../lib/core_ext/object'
 
 PROGRAM = 'hrhub'.freeze
 
-set :census_hrhub_host,      ENV['CENSUS_HRHUB_SERVICE_HOST']
-set :census_hrhub_port,      ENV['CENSUS_HRHUB_SERVICE_PORT']
+CENSUS_HRHUB_HOST = ENV['CENSUS_HRHUB_SERVICE_HOST'] || 'localhost'
+CENSUS_HRHUB_PORT = ENV['CENSUS_HRHUB_SERVICE_PORT'] || '5678'
+
+puts (CENSUS_HRHUB_HOST)
 # set :security_user_name,     ENV['security_user_name']
 # set :security_user_password, ENV['security_user_password']
 # set :protocol,               ENV['CENSUS_HRHUB_PROTOCOL']
@@ -28,16 +30,6 @@ WillPaginate.per_page = 20
 # View helper for defining blocks inside views for rendering in templates.
 helpers Sinatra::ContentFor2
 helpers do
-
-  # View helper for parsing and displaying JSON error responses.
-  # def error_flash(message, response)
-  #   error = JSON.parse(response)
-  #   if error['error']['timestamp']
-  #     flash[:error] = "#{message}: #{error['error']['message']}<br>Please quote reference #{error['error']['timestamp']} when contacting support."
-  #   elsif error['timestamp']
-  #     flash[:error] = "#{message}: #{error['message']}<br>Please quote reference #{error['timestamp']} when contacting support."
-  #   end
-  # end
 
   def error_flash_text(message, response)
     flash[:error] = "#{message}: #{response}"
@@ -53,11 +45,11 @@ end
 get '/' do
   erb :index, locals: { title: 'Home' }
     RestClient::Request.execute(method: :get,
-                                #url: "http://#{settings.census_hrhub_host}:#{settings.census_hrhub_port}/fieldforce/"
-                                url: "http://localhost:9290/fieldforce"
+                                url: "http://" + CENSUS_HRHUB_HOST + ":" + CENSUS_HRHUB_PORT + "/fieldforce/fwmt"
+                                #url: "http://localhost:5678/fieldforce/fwmt"
                             ) do |fieldforce_response, _request, _result, &_block|
     fieldforce = JSON.parse(fieldforce_response) unless fieldforce_response.code == 404
-
+    puts "http://" + CENSUS_HRHUB_HOST + ":" + CENSUS_HRHUB_PORT + "/fieldforce/"
     puts fieldforce
 
     erb :field_force, locals: { title: 'Field Force',
@@ -69,12 +61,22 @@ end
 get '/fieldforce/:fieldworkerid' do |fieldworkerid|
 
   RestClient::Request.execute(method: :get,
-                              #url: "http://#{settings.census_hrhub_host}:#{settings.census_hrhub_port}/fieldforce/"
-                              url: "http://localhost:9290/fieldforce/#{fieldworkerid}"
+                              url: "http://" + CENSUS_HRHUB_HOST + ":" + CENSUS_HRHUB_PORT + "/fieldforce/byId/#{fieldworkerid}"
+                              #url: "http://localhost:5678/fieldforce/byId/#{fieldworkerid}"
                           ) do |fieldworker_response, _request, _result, &_block|
   fieldworker = JSON.parse(fieldworker_response) unless fieldworker_response.code == 404
-
+ puts fieldworker
   erb :field_worker, locals: { title: 'Field Worker',
                             fieldworker: fieldworker }
   end
+end
+
+# Get Field Worker Details
+get '/download' do
+
+  filetype_array = ["fwmt", "lws"]
+
+  erb :download, locals: { title: 'File Download',
+                           filetype_array: filetype_array,
+                           url: "http://" + CENSUS_HRHUB_HOST + ":" + CENSUS_HRHUB_PORT}
 end
