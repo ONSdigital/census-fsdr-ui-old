@@ -1,6 +1,6 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ab8e513f5e8d48ec8ac8afd945293f8a)](https://www.codacy.com/app/sdcplatform/response-management-ui?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ONSdigital/response-management-ui&amp;utm_campaign=Badge_Grade)  [![Docker Pulls](https://img.shields.io/docker/pulls/sdcplatform/response-management-ui.svg)]()
 
-# HR Hub User Interface
+# Field Staff Data Repository User Interface
 
 ## Running
 To run this project in development using its [Rackup](http://rack.github.io/) file use:
@@ -13,7 +13,7 @@ and access using [http://localhost:9292](http://localhost:9292)
 
 In the event that the supporting spring boot app is not available there is a ruby Mock
 
-navigate to mock/hrhub
+navigate to mock/fsdr
 
   `bundle exec rackup -p 9290`
 

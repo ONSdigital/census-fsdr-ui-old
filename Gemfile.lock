@@ -13,7 +13,10 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
+    net-ldap (0.16.1)
     netrc (0.11.0)
+    ons-ldap (1.1.2)
+      net-ldap (~> 0, >= 0.11)
     rack (1.6.11)
     rack-protection (1.5.5)
       rack
@@ -47,6 +50,7 @@ PLATFORMS
 
 DEPENDENCIES
   json
+  ons-ldap
   rest-client
   rotp
   sass
@@ -55,3 +59,6 @@ DEPENDENCIES
   sinatra-flash
   sinatra-formkeeper
   will_paginate
+
+BUNDLED WITH
+   1.14.6

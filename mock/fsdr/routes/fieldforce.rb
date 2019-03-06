@@ -4,5 +4,5 @@ get '/fieldforce' do
 end
 
 get '/fieldforce/:fieldworkerid' do |fieldworkerid|
-    erb :field_worker, locals: {fieldworkerid: fieldworkerid}
+  erb :field_worker, locals: { fieldworkerid: fieldworkerid }
 end

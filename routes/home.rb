@@ -5,7 +5,6 @@ require 'syslog/logger'
 require 'will_paginate'
 require 'will_paginate/array'
 require 'rest_client'
-require 'ons-ldap'
 require 'json'
 require 'yaml'
 require 'open-uri'
@@ -14,12 +13,10 @@ require 'csv'
 
 require_relative '../lib/core_ext/object'
 
-PROGRAM = 'hrhub'.freeze
+PROGRAM = 'fsdr'.freeze
 
-CENSUS_HRHUB_HOST = ENV['CENSUS_HRHUB_SERVICE_HOST'] || 'localhost'
-CENSUS_HRHUB_PORT = ENV['CENSUS_HRHUB_SERVICE_PORT'] || '5678'
-
-puts (CENSUS_HRHUB_HOST)
+CENSUS_FSDR_HOST = ENV['CENSUS_FSDR_SERVICE_HOST'] || 'localhost'
+CENSUS_FSDR_PORT = ENV['CENSUS_FSDR_SERVICE_PORT'] || '5678'
 
 # Set global pagination options.
 WillPaginate.per_page = 20
@@ -41,16 +38,12 @@ end
 # Home page.
 get '/' do
   erb :index, locals: { title: 'Home' }
-    RestClient::Request.execute(method: :get,
-                                url: "http://" + CENSUS_HRHUB_HOST + ":" + CENSUS_HRHUB_PORT + "/fieldforce/fwmt"
-                                #url: "http://localhost:5678/fieldforce/fwmt"
-                            ) do |fieldforce_response, _request, _result, &_block|
+  RestClient::Request.execute(method: :get,
+                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + '/fieldforce/fwmt') do |fieldforce_response, _request, _result, &_block|
     fieldforce = JSON.parse(fieldforce_response) unless fieldforce_response.code == 404
-    puts "http://" + CENSUS_HRHUB_HOST + ":" + CENSUS_HRHUB_PORT + "/fieldforce/"
-    puts fieldforce
 
     erb :field_force, locals: { title: 'Field Force',
-                              fieldforce: fieldforce }
+                                fieldforce: fieldforce }
   end
 end
 
@@ -58,22 +51,20 @@ end
 get '/fieldforce/:fieldworkerid' do |fieldworkerid|
   fieldworker = []
   RestClient::Request.execute(method: :get,
-                              url: "http://" + CENSUS_HRHUB_HOST + ":" + CENSUS_HRHUB_PORT + "/fieldforce/byId/#{fieldworkerid}"
-                              #url: "http://localhost:5678/fieldforce/byId/#{fieldworkerid}"
-                          ) do |fieldworker_response, _request, _result, &_block|
-  fieldworker = JSON.parse(fieldworker_response) unless fieldworker_response.code == 404
- puts fieldworker
-  erb :field_worker, locals: { title: 'Field Worker',
-                            fieldworker: fieldworker }
+                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/fieldforce/byId/#{fieldworkerid}") do |fieldworker_response, _request, _result, &_block|
+    unless fieldworker_response.empty?
+      fieldworker = JSON.parse(fieldworker_response) unless fieldworker_response.code == 404
+    end
+
+    erb :field_worker, locals: { title: 'Field Worker',
+                                 fieldworker: fieldworker }
   end
 end
 
 # Get Field Worker Details
 get '/download' do
-
-  filetype_array = ["fwmt", "lws"]
-
+  filetype_array = %w[fwmt lws]
   erb :download, locals: { title: 'File Download',
                            filetype_array: filetype_array,
-                           url: "http://" + CENSUS_HRHUB_HOST + ":" + CENSUS_HRHUB_PORT}
+                           url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT }
 end
