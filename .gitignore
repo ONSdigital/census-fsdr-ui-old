@@ -3,6 +3,7 @@
 
 ### Ruby ###
 *.gem
+.DS_Store
 *.rbc
 *.css.map
 *.sass-cache*
@@ -54,4 +55,3 @@ build-iPhoneSimulator/
 
 # intelliJ properties
 /.idea/
-
