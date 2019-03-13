@@ -38,12 +38,21 @@ end
 # Home page.
 get '/' do
   erb :index, locals: { title: 'Home' }
+  filetype_array = %w[fwmt lws]
+  erb :field_force_viewer, locals: { title: 'Field Force Viewer',
+                                     filetype_array: filetype_array }
+end
+
+# Data page.
+get '/fieldforce/view/:viewtype' do | viewtype |
+  erb :index, locals: { title: 'Home' }
   RestClient::Request.execute(method: :get,
-                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + '/fieldforce/fwmt') do |fieldforce_response, _request, _result, &_block|
+                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/fieldforce/#{viewtype}") do |fieldforce_response, _request, _result, &_block|
     fieldforce = JSON.parse(fieldforce_response) unless fieldforce_response.code == 404
 
-    erb :field_force, locals: { title: 'Field Force',
-                                fieldforce: fieldforce }
+    erb :field_force, locals: { title: 'Field Force view for: ' + viewtype.upcase,
+                                fieldforce: fieldforce,
+                                viewtype: viewtype }
   end
 end
 

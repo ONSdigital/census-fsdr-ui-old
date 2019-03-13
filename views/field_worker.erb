@@ -8,9 +8,9 @@
 <table class="primary">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Forename</th>
       <th>Surname</th>
-      <th>ID</th>
       <th>Mobile</th>
       <th>Address1</th>
       <th>Address2</th>
@@ -22,18 +22,18 @@
   </thead>
   <tbody>
       <tr>
-        <% if fieldworker['forename'].present? %>
-          <td><%=h fieldworker['forename'] %></td>
+        <% if fieldworker['id'].present? %>
+          <td><%=h fieldworker['id'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if fieldworker['firstName'].present? %>
+          <td><%=h fieldworker['firstName'] %></td>
         <% else %>
           <td>-</td>
         <% end %>
         <% if fieldworker['surname'].present? %>
           <td><%=h fieldworker['surname'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if fieldworker['id'].present? %>
-          <td><%=h fieldworker['id'] %></td>
         <% else %>
           <td>-</td>
         <% end %>

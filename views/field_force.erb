@@ -2,15 +2,21 @@
 
 <% if fieldforce.any? %>
 <% content_for :sub_heading do %>
-  Click a Field Worker to review.
+  Click a Field Worker to review or choose to view JSON
 <% end %>
+
+<script src="/javascripts/viewjson.js" type="text/javascript"></script>
 
 <table class="primary">
   <thead>
     <tr>
       <th>ID</th>
       <th>RoleID</th>
-      <th>Bank Account Number</th>
+      <% if viewtype['fwmt'] %>
+        <td>Bank Account</td>
+      <% else %>
+        <td>Name</td>
+      <% end %>
       <th></th>
     </tr>
   </thead>
@@ -27,14 +33,23 @@
         <% else %>
           <td>-</td>
         <% end %>
-        <% if fieldmember['bankAccountNumber'].present? %>
-          <td><%=h fieldmember['bankAccountNumber'] %></td>
+        <% if fieldmember['firstName'].present? %>
+          <td><%=h fieldmember['firstName'] %> <%=h fieldmember['surname'] %></td>
         <% else %>
-          <td>-</td>
+          <td><%=h fieldmember['bankAccountNumber'] %></td>
         <% end %>
         <td><a href="/fieldforce/<%=fieldmember['id'] %>">View Field Worker</a></td>
       <% end %>
     </tr>
   </tbody>
 </table>
+<br>
+<button onclick="viewJson()">View JSON</button>
+
+<div id="json" style="display:none">
+  JSON View
+  <br>
+  <%= fieldforce %>
+</div>
+
 <% end %>
