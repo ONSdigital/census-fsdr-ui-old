@@ -5,6 +5,8 @@ Bundler.require
 
 require_relative 'routes/home'
 require_relative 'routes/error'
+require_relative 'routes/fieldforce'
+require_relative 'routes/authentication'
 
 require 'rack/etag'
 require 'rack/conditionalget'

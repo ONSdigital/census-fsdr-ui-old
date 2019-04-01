@@ -1,0 +1,14 @@
+<%= erb :menu, locals: { pageid: 'home' } %>
+
+<form action="searchresults" method="post" action="#"  id="searchform">
+  Forename:<br>
+  <input  type="text" name="forename">
+  <br>Surname:<br>
+  <input type="text" name="surname">
+  <br>Worker ID:<br>
+  <input type="text" name="workerid">
+  <br>Area ID:<br>
+  <input type="text" name="areaid">
+  <br>
+  <input  type="submit" name="submit" value="Search">
+</form>

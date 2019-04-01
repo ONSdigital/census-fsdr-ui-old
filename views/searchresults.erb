@@ -1,0 +1,40 @@
+<%= erb :menu, locals: { pageid: 'home' } %>
+
+<% if results.any? %>
+<% content_for :sub_heading do %>
+  Details for Field Worker
+<% end %>
+
+<table class="primary">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Forename</th>
+      <th>Surname</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <% if results['id'].present? %>
+          <td><%=h results['id'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if results['firstName'].present? %>
+          <td><%=h results['firstName'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if results['surname'].present? %>
+          <td><%=h results['surname'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <td><a href="/fieldforce/<%=results['id'] %>">View Field Worker</a></td>
+    </tr>
+  </tbody>
+</table>
+<% else %>
+No Field Worker for searched terms
+<% end %>

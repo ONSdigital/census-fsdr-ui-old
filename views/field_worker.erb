@@ -1,9 +1,7 @@
 <%= erb :menu, locals: { pageid: 'home' } %>
 
 <% if fieldworker.any? %>
-<% content_for :sub_heading do %>
-  Details for Field Worker
-<% end %>
+Details for Field Worker
 
 <table class="primary">
   <thead>
@@ -75,6 +73,83 @@
     </tr>
   </tbody>
 </table>
+<% if fieldworkerhistory.any? %>
+
+<br>
+History for Field Worker
+<table class="primary">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Forename</th>
+      <th>Surname</th>
+      <th>Mobile</th>
+      <th>Address1</th>
+      <th>Address2</th>
+      <th>Town</th>
+      <th>County</th>
+      <th>Emergency Contact</th>
+      <th>Emergency Contact Mobile</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <% if fieldworkerhistory['id'].present? %>
+          <td><%=h fieldworkerhistory['id'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if fieldworkerhistory['firstName'].present? %>
+          <td><%=h fieldworkerhistory['firstName'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if fieldworkerhistory['surname'].present? %>
+          <td><%=h fieldworkerhistory['surname'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if fieldworkerhistory['phoneNumber'].present? %>
+          <td><%=h fieldworkerhistory['phoneNumber'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if fieldworkerhistory['address1'].present? %>
+          <td><%=h fieldworkerhistory['address1'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if fieldworkerhistory['address2'].present? %>
+          <td><%=h fieldworkerhistory['address2'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if fieldworkerhistory['townCity'].present? %>
+          <td><%=h fieldworkerhistory['townCity'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if fieldworkerhistory['county'].present? %>
+          <td><%=h fieldworkerhistory['county'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if fieldworkerhistory['emergencyContactForename'].present? %>
+          <td><%=h fieldworkerhistory['emergencyContactForename'] %> <%=h fieldworkerhistory['emergencyContactSurname'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if fieldworkerhistory['emergencyContactMobile'].present? %>
+          <td><%=h fieldworkerhistory['emergencyContactMobile'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+    </tr>
+  </tbody>
+</table>
+<% else %>
+No History for Field Worker
+<% end %>
 <% else %>
 No Field Worker for searched ID
 <% end %>
