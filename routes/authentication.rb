@@ -4,9 +4,9 @@ end
 
 User = Struct.new(:id, :username, :password_hash, :role)
 USERS = [
-  User.new(1, 'FSSSUSER', 'password', 'FSSS'),
-  User.new(2, 'HRUSER', 'password', 'HR'),
-  User.new(3, 'RECRUITUSER', 'password', 'RECR'),
+  User.new(1, 'FSSSUSER', 'password', 'fsss'),
+  User.new(2, 'HRUSER', 'password', 'hr'),
+  User.new(3, 'RECRUITUSER', 'password', 'recruitment'),
 ]
 
 auth_logger   = Syslog::Logger.new(PROGRAM, Syslog::LOG_AUTHPRIV)
@@ -28,11 +28,8 @@ post '/signin/?' do
       session[:valid_token] = true
       session[:user] = user.username
       session[:role] = user.role
-      puts session[:user]
-      puts session
       redirect '/'
     else
-      puts "in else"
       flash[:notice] = 'You could not be signed in. Did you enter the correct credentials?'
       redirect '/signin'
     end

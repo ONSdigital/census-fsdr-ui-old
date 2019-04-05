@@ -3,14 +3,8 @@ GEM
   specs:
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
-    ffi (1.10.0)
-    formkeeper (0.0.15)
-      hpricot
-      rack
-    hpricot (0.8.6)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    json (2.2.0)
     mime-types (3.2.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2019.0331)
@@ -19,51 +13,27 @@ GEM
     rack (2.0.6)
     rack-protection (2.0.5)
       rack
-    rb-fsevent (0.10.3)
-    rb-inotify (0.10.0)
-      ffi (~> 1.0)
     rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    sass (3.7.3)
-      sass-listen (~> 4.0.0)
-    sass-listen (4.0.0)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
     sinatra (2.0.5)
       mustermann (~> 1.0)
       rack (~> 2.0)
       rack-protection (= 2.0.5)
       tilt (~> 2.0)
-    sinatra-content-for2 (0.3)
-      sinatra
-    sinatra-flash (0.3.0)
-      sinatra (>= 1.0.0)
-    sinatra-formkeeper (0.0.7)
-      formkeeper (~> 0.0.12)
-      hpricot
-      rack
-      sinatra
     tilt (2.0.9)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
-    will_paginate (3.1.7)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  json
   rack (= 2.0.6)
   rest-client
-  sass
   sinatra
-  sinatra-content-for2
-  sinatra-flash
-  sinatra-formkeeper
-  will_paginate
 
 BUNDLED WITH
    1.14.6

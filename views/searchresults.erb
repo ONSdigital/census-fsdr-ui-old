@@ -15,24 +15,26 @@
     </tr>
   </thead>
   <tbody>
+    <% results.each_with_index do |result| %>
       <tr>
-        <% if results['id'].present? %>
-          <td><%=h results['id'] %></td>
+        <% if result['id'].present? %>
+          <td><%=h result['id'] %></td>
         <% else %>
           <td>-</td>
         <% end %>
-        <% if results['firstName'].present? %>
-          <td><%=h results['firstName'] %></td>
+        <% if result['firstName'].present? %>
+          <td><%=h result['firstName'] %></td>
         <% else %>
           <td>-</td>
         <% end %>
-        <% if results['surname'].present? %>
-          <td><%=h results['surname'] %></td>
+        <% if result['surname'].present? %>
+          <td><%=h result['surname'] %></td>
         <% else %>
           <td>-</td>
         <% end %>
-        <td><a href="/fieldforce/<%=results['id'] %>">View Field Worker</a></td>
+        <td><a href="/fieldforce/<%=result['id'] %>">View Field Worker</a></td>
     </tr>
+    <% end %>
   </tbody>
 </table>
 <% else %>

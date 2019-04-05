@@ -1,7 +1,7 @@
 <%= erb :menu, locals: { pageid: 'home' } %>
 
 <% content_for :sub_heading do %>
-  Choose a download type.
+  Download <%= role %> data
 <% end %>
 
 <table class="primary">
@@ -12,11 +12,9 @@
     </tr>
   </thead>
   <tbody>
-      <% filetype_array.each do |filetype| %>
-      <tr>
-        <td><%= filetype %></td>
-        <td><a href="<%= url %>/fieldforce/file/<%= filetype %>">Download</a></td>
-      <% end %>
+    <tr>
+      <td><%= role %></td>
+      <td><a href="<%= url %>/fieldforce/file/<%= role %>">Download</a></td>
     </tr>
   </tbody>
 </table>
