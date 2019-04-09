@@ -1,29 +1,29 @@
 <%= erb :menu, locals: { pageid: 'home' } %>
 
-<% if !fieldworkerdetails.nil? %>
+<% unless field_worker_details.nil? %>
 Details for Field Worker
-<%= fieldworkerdetails %>
+<%= field_worker_details %>
 <% else %>
 No Field Worker for searched ID
 <% end %>
 <br>
-<% if !fieldworkerdevices.nil? %>
+<% unless field_worker_devices.nil? %>
 Devices for Field Worker
-<%= fieldworkerdevices %>
+<%= field_worker_devices %>
 <% else %>
 Field Worker has no allocated devices
 <% end %>
 <br>
-<% if !fieldworkerjobroles.nil? %>
+<% unless field_worker_job_roles.nil? %>
 Job Roles for Field Worker
-<%= fieldworkerjobroles %>
+<%= field_worker_job_roles %>
 <% else %>
 Field Worker has no Job Roles
 <% end %>
 <br>
-<% if !fieldworkerhistory.nil? %>
+<% unless field_worker_history.nil? %>
 History for Field Worker
-<%= fieldworkerhistory %>
+<%= field_worker_history %>
 <% else %>
 No History for Field Worker
 <% end %>

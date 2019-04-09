@@ -35,58 +35,58 @@ end
 # Get Individual Field Worker Details
 get '/fieldforce/:fieldworkerid' do |fieldworkerid|
   authenticate!
-  fieldworkerdetails = []
-  fieldworkerdevices = []
-  fieldworkerjobroles = []
-  fieldworkerhistory = []
+  field_worker_details = []
+  field_worker_devices = []
+  field_worker_job_roles = []
+  field_worker_history = []
   role = session[:role]
   RestClient::Request.execute(method: :get,
-                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/fieldforce/byId/#{role}/#{fieldworkerid}") do |fieldworkerdetails_response, _request, _result, &_block|
-    unless fieldworkerdetails_response.empty?
-      fieldworkerdetails = JSON.parse(fieldworkerdetails_response) unless fieldworkerdetails_response.code == 404
+                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/fieldforce/byId/#{role}/#{fieldworkerid}") do |field_worker_details_response, _request, _result, &_block|
+    unless field_worker_details_response.empty?
+      field_worker_details = JSON.parse(field_worker_details_response) unless field_worker_details_response.code == 404
     end
   end
 
   RestClient::Request.execute(method: :get,
-                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/devices/byEmployee/#{fieldworkerid}") do |fieldworkerdevices_response, _request, _result, &_block|
-    unless fieldworkerdevices_response.empty?
-      fieldworkerdevices = JSON.parse(fieldworkerdevices_response) unless fieldworkerdevices_response.code == 404
+                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/devices/byEmployee/#{fieldworkerid}") do |field_worker_devices_response, _request, _result, &_block|
+    unless field_worker_devices_response.empty?
+      field_worker_devices = JSON.parse(field_worker_devices_response) unless field_worker_devices_response.code == 404
     end
   end
 
   RestClient::Request.execute(method: :get,
-                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/jobRoles/byEmployee/#{fieldworkerid}") do |fieldworkerjobroles_response, _request, _result, &_block|
-    unless fieldworkerjobroles_response.empty?
-      fieldworkerjobroles = JSON.parse(fieldworkerjobroles_response) unless fieldworkerjobroles_response.code == 404
+                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/jobRoles/byEmployee/#{fieldworkerid}") do |field_worker_job_roles_response, _request, _result, &_block|
+    unless field_worker_job_roles_response.empty?
+      field_worker_job_roles = JSON.parse(field_worker_job_roles_response) unless field_worker_job_roles_response.code == 404
     end
   end
 
   RestClient::Request.execute(method: :get,
-                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/fieldforce/historyById/#{role}/#{fieldworkerid}") do |fieldworkerhistory_response, _request, _result, &_block|
-    unless fieldworkerhistory_response.empty?
-      fieldworkerhistory = JSON.parse(fieldworkerhistory_response) unless fieldworkerhistory_response.code == 404
+                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/fieldforce/historyById/#{role}/#{fieldworkerid}") do |field_worker_history_response, _request, _result, &_block|
+    unless field_worker_history_response.empty?
+      field_worker_history = JSON.parse(field_worker_history_response) unless field_worker_history_response.code == 404
     end
   end
 
-  if fieldworkerdetails.any?
-    fieldworkerdetailshtml =  Json2htmltable::create_table(fieldworkerdetails)
+  if field_worker_details.any?
+    field_worker_details_html =  Json2htmltable::create_table(field_worker_details)
   end
-  if fieldworkerdevices.any?
-    fieldworkerdeviceshtml =  Json2htmltable::create_table(fieldworkerdevices)
+  if field_worker_devices.any?
+    field_worker_devices_html =  Json2htmltable::create_table(field_worker_devices)
   end
-  if fieldworkerjobroles.any?
-    fieldworkerjobroleshtml =  Json2htmltable::create_table(fieldworkerjobroles)
+  if field_worker_job_roles.any?
+    field_worker_job_roles_html =  Json2htmltable::create_table(field_worker_job_roles)
   end
-  if fieldworkerhistory.any?
-    fieldworkerhistoryhtml =  Json2htmltable::create_table(fieldworkerhistory)
+  if field_worker_history.any?
+    field_worker_history_html =  Json2htmltable::create_table(field_worker_history)
   end
 
 
   erb :field_worker, layout: :sidebar_layout, locals: { title: 'Field Worker',
-                                                        fieldworkerdetails: fieldworkerdetailshtml,
-                                                        fieldworkerdevices: fieldworkerdeviceshtml,
-                                                        fieldworkerjobroles: fieldworkerjobroleshtml,
-                                                        fieldworkerhistory: fieldworkerhistoryhtml
+                                                        field_worker_details: field_worker_details_html,
+                                                        field_worker_devices: field_worker_devices_html,
+                                                        field_worker_job_roles: field_worker_job_roles_html,
+                                                        field_worker_history: field_worker_history_html
                                                       }
 
 end

@@ -140,10 +140,8 @@ post '/searchresults' do
     multi_query_flag = true
   end
 
-  puts search_params
-
   RestClient::Request.execute(method: :get,
-                               url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/fieldforce/#{search_params}") do |fieldforce_response, _request, _result, &_block|
+                               url: "http://#{CENSUS_FSDR_HOST}:#{CENSUS_FSDR_PORT}/fieldforce/#{search_params}") do |fieldforce_response, _request, _result, &_block|
     results = JSON.parse(fieldforce_response) unless fieldforce_response.code == 404
     erb :searchresults, locals: { title: 'Search Results',
                                   results: results}
