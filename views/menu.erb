@@ -1,5 +1,5 @@
 <% content_for :menu do %>
   <li><a href="/">Home</a></li>
-  <li><a href="/download">Download <% session[:role] %> Data</a></li>
+  <li><a href="/download">Download <%= session[:role].upcase %> Data</a></li>
   <li><a href="/search">Search</a></li>
 <% end %>

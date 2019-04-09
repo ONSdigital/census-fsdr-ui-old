@@ -102,9 +102,9 @@ post '/searchresults' do
   authenticate!
   results = []
   first_name = params[:firstname]
-  surname = params[:surname]
-  job_code = params[:jobcode]
-  area_code = params[:areacode]
+  surname    = params[:surname]
+  job_code   = params[:jobcode]
+  area_code  = params[:areacode]
 
   multi_query_flag = false
   search_params = 'employeeSearch?'
@@ -140,7 +140,7 @@ post '/searchresults' do
     multi_query_flag = true
   end
 
-  puts 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/fieldforce/#{search_params}"
+  puts search_params
 
   RestClient::Request.execute(method: :get,
                                url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/fieldforce/#{search_params}") do |fieldforce_response, _request, _result, &_block|

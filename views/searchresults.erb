@@ -17,8 +17,8 @@
   <tbody>
     <% results.each_with_index do |result| %>
       <tr>
-        <% if result['id'].present? %>
-          <td><%=h result['id'] %></td>
+        <% if result['uniqueEmployeeId'].present? %>
+          <td><%=h result['uniqueEmployeeId'] %></td>
         <% else %>
           <td>-</td>
         <% end %>
@@ -32,7 +32,7 @@
         <% else %>
           <td>-</td>
         <% end %>
-        <td><a href="/fieldforce/<%=result['id'] %>">View Field Worker</a></td>
+        <td><a href="/fieldforce/<%=result['uniqueEmployeeId'] %>">View Field Worker</a></td>
     </tr>
     <% end %>
   </tbody>
