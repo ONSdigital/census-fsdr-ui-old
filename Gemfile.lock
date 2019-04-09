@@ -16,7 +16,7 @@ GEM
     mime-types-data (3.2019.0331)
     mustermann (1.0.3)
     netrc (0.11.0)
-    rack (2.0.6)
+    rack (2.0.7)
     rack-protection (2.0.5)
       rack
     rb-fsevent (0.10.3)
@@ -26,7 +26,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    sass (3.7.3)
+    sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -56,7 +56,6 @@ PLATFORMS
 
 DEPENDENCIES
   json
-  rack (= 2.0.6)
   rest-client
   sass
   sinatra

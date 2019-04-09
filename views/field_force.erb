@@ -11,34 +11,24 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>RoleID</th>
-      <% if viewtype['fwmt'] %>
-        <td>Bank Account</td>
-      <% else %>
-        <td>Name</td>
-      <% end %>
+      <td>Name</td>
       <th></th>
     </tr>
   </thead>
   <tbody>
       <% fieldforce.each_with_index do |fieldmember| %>
       <tr>
-        <% if fieldmember['id'].present? %>
-          <td><%=h fieldmember['id'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if fieldmember['uniqueRoleId'].present? %>
-          <td><%=h fieldmember['uniqueRoleId'] %></td>
+        <% if fieldmember['uniqueEmployeeId'].present? %>
+          <td><%=h fieldmember['uniqueEmployeeId'] %></td>
         <% else %>
           <td>-</td>
         <% end %>
         <% if fieldmember['firstName'].present? %>
           <td><%=h fieldmember['firstName'] %> <%=h fieldmember['surname'] %></td>
         <% else %>
-          <td><%=h fieldmember['bankAccountNumber'] %></td>
+          <td>-</td>
         <% end %>
-        <td><a href="/fieldforce/<%=fieldmember['id'] %>">View Field Worker</a></td>
+        <td><a href="/fieldforce/<%=fieldmember['uniqueEmployeeId'] %>">View Field Worker</a></td>
       <% end %>
     </tr>
   </tbody>

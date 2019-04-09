@@ -1,155 +1,29 @@
 <%= erb :menu, locals: { pageid: 'home' } %>
 
-<% if fieldworker.any? %>
+<% unless field_worker_details.nil? %>
 Details for Field Worker
-
-<table class="primary">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Forename</th>
-      <th>Surname</th>
-      <th>Mobile</th>
-      <th>Address1</th>
-      <th>Address2</th>
-      <th>Town</th>
-      <th>County</th>
-      <th>Emergency Contact</th>
-      <th>Emergency Contact Mobile</th>
-    </tr>
-  </thead>
-  <tbody>
-      <tr>
-        <% if fieldworker['id'].present? %>
-          <td><%=h fieldworker['id'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if fieldworker['firstName'].present? %>
-          <td><%=h fieldworker['firstName'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if fieldworker['surname'].present? %>
-          <td><%=h fieldworker['surname'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if fieldworker['phoneNumber'].present? %>
-          <td><%=h fieldworker['phoneNumber'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if fieldworker['address1'].present? %>
-          <td><%=h fieldworker['address1'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if fieldworker['address2'].present? %>
-          <td><%=h fieldworker['address2'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if fieldworker['townCity'].present? %>
-          <td><%=h fieldworker['townCity'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if fieldworker['county'].present? %>
-          <td><%=h fieldworker['county'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if fieldworker['emergencyContactForename'].present? %>
-          <td><%=h fieldworker['emergencyContactForename'] %> <%=h fieldworker['emergencyContactSurname'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if fieldworker['emergencyContactMobile'].present? %>
-          <td><%=h fieldworker['emergencyContactMobile'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-    </tr>
-  </tbody>
-</table>
-<% if fieldworkerhistory.any? %>
-
-<br>
-History for Field Worker
-<table class="primary">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Forename</th>
-      <th>Surname</th>
-      <th>Mobile</th>
-      <th>Address1</th>
-      <th>Address2</th>
-      <th>Town</th>
-      <th>County</th>
-      <th>Emergency Contact</th>
-      <th>Emergency Contact Mobile</th>
-    </tr>
-  </thead>
-  <tbody>
-      <tr>
-        <% if fieldworkerhistory['id'].present? %>
-          <td><%=h fieldworkerhistory['id'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if fieldworkerhistory['firstName'].present? %>
-          <td><%=h fieldworkerhistory['firstName'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if fieldworkerhistory['surname'].present? %>
-          <td><%=h fieldworkerhistory['surname'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if fieldworkerhistory['phoneNumber'].present? %>
-          <td><%=h fieldworkerhistory['phoneNumber'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if fieldworkerhistory['address1'].present? %>
-          <td><%=h fieldworkerhistory['address1'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if fieldworkerhistory['address2'].present? %>
-          <td><%=h fieldworkerhistory['address2'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if fieldworkerhistory['townCity'].present? %>
-          <td><%=h fieldworkerhistory['townCity'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if fieldworkerhistory['county'].present? %>
-          <td><%=h fieldworkerhistory['county'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if fieldworkerhistory['emergencyContactForename'].present? %>
-          <td><%=h fieldworkerhistory['emergencyContactForename'] %> <%=h fieldworkerhistory['emergencyContactSurname'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if fieldworkerhistory['emergencyContactMobile'].present? %>
-          <td><%=h fieldworkerhistory['emergencyContactMobile'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-    </tr>
-  </tbody>
-</table>
-<% else %>
-No History for Field Worker
-<% end %>
+<%= field_worker_details %>
 <% else %>
 No Field Worker for searched ID
+<% end %>
+<br>
+<% unless field_worker_devices.nil? %>
+Devices for Field Worker
+<%= field_worker_devices %>
+<% else %>
+Field Worker has no allocated devices
+<% end %>
+<br>
+<% unless field_worker_job_roles.nil? %>
+Job Roles for Field Worker
+<%= field_worker_job_roles %>
+<% else %>
+Field Worker has no Job Roles
+<% end %>
+<br>
+<% unless field_worker_history.nil? %>
+History for Field Worker
+<%= field_worker_history %>
+<% else %>
+No History for Field Worker
 <% end %>
