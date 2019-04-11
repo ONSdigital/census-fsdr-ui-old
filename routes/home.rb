@@ -103,7 +103,7 @@ post '/searchresults' do
   results = []
   first_name = params[:firstname]
   surname    = params[:surname]
-  job_code   = params[:jobcode]
+  job_role_id   = params[:jobroleid]
   area_code  = params[:areacode]
 
   multi_query_flag = false
@@ -124,11 +124,11 @@ post '/searchresults' do
     multi_query_flag = true
   end
 
-  unless job_code.empty?
+  unless job_role_id.empty?
     if multi_query_flag
       search_params = search_params + '&'
     end
-    search_params = search_params + 'jobCode=' + job_code
+    search_params = search_params + 'jobRoleId=' + job_role_id
     multi_query_flag = true
   end
 
