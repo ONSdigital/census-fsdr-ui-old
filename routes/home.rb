@@ -10,6 +10,7 @@ require 'yaml'
 require 'open-uri'
 require 'sinatra/formkeeper'
 require 'csv'
+require 'pg'
 
 require_relative '../lib/authentication'
 require_relative '../lib/core_ext/object'
