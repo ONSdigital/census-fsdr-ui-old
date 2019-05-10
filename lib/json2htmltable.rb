@@ -1,10 +1,8 @@
 require 'json'
 
-
 module Json2htmltable
-
   def self.create_table(html)
-    output =  "<table class='primary'><thead><tr>"
+    output = "<table class='primary'><thead><tr>"
     if html.is_a?(Array)
       html[0].keys.map do |table_head|
         table_head = Rack::Utils.escape_html(table_head)
@@ -16,11 +14,10 @@ module Json2htmltable
         output += "<th>#{table_head}</th>"
       end
     end
-
-    output += "</tr></thead><tbody><tr>"
+    output += '</tr></thead><tbody><tr>'
     if html.is_a?(Array)
-      html.each do | htmlrow |
-        htmlrow.values.map  do |table_row|
+      html.each do |htmlrow|
+        htmlrow.values.map do |table_row|
           if table_row.is_a?(Hash)
             create_table(table_row)
           else
@@ -28,11 +25,11 @@ module Json2htmltable
             output += "<td>#{table_row}</td>"
           end
         end
-        output += "</tr>"
+        output += '</tr>'
       end
-      output += "</tbody></table>"
+      output += '</tbody></table>'
     else
-      html.values.map  do |table_row|
+      html.values.map do |table_row|
         if table_row.is_a?(Hash)
           create_table(table_row)
         else
@@ -40,8 +37,7 @@ module Json2htmltable
           output += "<td>#{table_row}</td>"
         end
       end
-      output += "</tr></tbody></table>"
+      output += '</tr></tbody></table>'
     end
-    return output
   end
 end

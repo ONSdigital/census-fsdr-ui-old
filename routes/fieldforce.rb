@@ -16,7 +16,7 @@ helpers do
 end
 
 # Data page.
-get '/fieldforce/view/:viewtype' do | viewtype |
+get '/fieldforce/view/:viewtype' do |viewtype|
   authenticate!
   erb :index, locals: { title: 'Home' }
   fieldforce = []
@@ -27,8 +27,8 @@ get '/fieldforce/view/:viewtype' do | viewtype |
     end
 
     erb :field_force, layout: :sidebar_layout, locals: { title: 'Field Force view for: ' + viewtype.upcase,
-                                fieldforce: fieldforce,
-                                viewtype: viewtype }
+                                                         fieldforce: fieldforce,
+                                                         viewtype: viewtype }
   end
 end
 
@@ -69,24 +69,22 @@ get '/fieldforce/:fieldworkerid' do |fieldworkerid|
   end
 
   if field_worker_details.any?
-    field_worker_details_html =  Json2htmltable::create_table(field_worker_details)
+    field_worker_details_html = Json2htmltable.create_table(field_worker_details)
   end
   if field_worker_devices.any?
-    field_worker_devices_html =  Json2htmltable::create_table(field_worker_devices)
+    field_worker_devices_html = Json2htmltable.create_table(field_worker_devices)
   end
   if field_worker_job_roles.any?
-    field_worker_job_roles_html =  Json2htmltable::create_table(field_worker_job_roles)
+    field_worker_job_roles_html = Json2htmltable.create_table(field_worker_job_roles)
   end
   if field_worker_history.any?
-    field_worker_history_html =  Json2htmltable::create_table(field_worker_history)
+    field_worker_history_html = Json2htmltable.create_table(field_worker_history)
   end
-
 
   erb :field_worker, layout: :sidebar_layout, locals: { title: 'Field Worker',
                                                         field_worker_details: field_worker_details_html,
                                                         field_worker_devices: field_worker_devices_html,
                                                         field_worker_job_roles: field_worker_job_roles_html,
-                                                        field_worker_history: field_worker_history_html
-                                                      }
+                                                        field_worker_history: field_worker_history_html }
 
 end

@@ -10,7 +10,7 @@ def test_password(hashed_password, stored_password)
   hashed_password == stored_password
 end
 
-auth_logger   = Syslog::Logger.new(PROGRAM, Syslog::LOG_AUTHPRIV)
+auth_logger = Syslog::Logger.new(PROGRAM, Syslog::LOG_AUTHPRIV)
 
 helpers do
   def user_role

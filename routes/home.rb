@@ -82,12 +82,12 @@ get '/download' do
   role = session[:role]
 
   RestClient::Request.execute(method: :get,
-                               url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/fieldforce/file/#{role}") do |download_file, _request, _result, &_block|
+                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/fieldforce/file/#{role}") do |download_file, _request, _result, &_block|
     doc = "#{role}.csv"
-    File.open(doc, "w") do | download |
+    File.open(doc, 'w') do |download|
       download.puts download_file
     end
-    send_file doc, :type => 'text; charset=utf-8', :disposition => 'attachment'
+    send_file doc, type: 'text; charset=utf-8', disposition: 'attachment'
   end
   redirect request.referrer
 end
@@ -102,49 +102,41 @@ end
 post '/searchresults' do
   authenticate!
   results = []
-  first_name = params[:firstname]
-  surname    = params[:surname]
-  job_role_id   = params[:jobroleid]
-  area_code  = params[:areacode]
+  first_name  = params[:firstname]
+  surname     = params[:surname]
+  job_role_id = params[:jobroleid]
+  area_code   = params[:areacode]
 
   multi_query_flag = false
   search_params = 'employeeSearch?'
   unless surname.empty?
-    if multi_query_flag
-      search_params = search_params + '&'
-    end
+    search_params += '&' if multi_query_flag
     search_params = search_params + 'surname=' + surname
     multi_query_flag = true
   end
 
   unless first_name.empty?
-    if multi_query_flag
-      search_params = search_params + '&'
-    end
+    search_params += '&' if multi_query_flag
     search_params = search_params + 'firstName=' + first_name
     multi_query_flag = true
   end
 
   unless job_role_id.empty?
-    if multi_query_flag
-      search_params = search_params + '&'
-    end
+    search_params += '&' if multi_query_flag
     search_params = search_params + 'jobRoleId=' + job_role_id
     multi_query_flag = true
   end
 
   unless area_code.empty?
-    if multi_query_flag
-      search_params = search_params + '&'
-    end
+    search_params += '&' if multi_query_flag
     search_params = search_params + 'areaCode=' + area_code
     multi_query_flag = true
   end
 
   RestClient::Request.execute(method: :get,
-                               url: "http://#{CENSUS_FSDR_HOST}:#{CENSUS_FSDR_PORT}/fieldforce/#{search_params}") do |fieldforce_response, _request, _result, &_block|
+                              url: "http://#{CENSUS_FSDR_HOST}:#{CENSUS_FSDR_PORT}/fieldforce/#{search_params}") do |fieldforce_response, _request, _result, &_block|
     results = JSON.parse(fieldforce_response) unless fieldforce_response.code == 404
     erb :searchresults, locals: { title: 'Search Results',
-                                  results: results}
+                                  results: results }
   end
 end
