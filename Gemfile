@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'bcrypt'
 gem 'json'
 gem 'rest-client'
 gem 'sinatra'

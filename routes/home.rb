@@ -10,7 +10,6 @@ require 'yaml'
 require 'open-uri'
 require 'sinatra/formkeeper'
 require 'csv'
-require 'bcrypt'
 
 require_relative '../lib/authentication'
 require_relative '../lib/core_ext/object'
