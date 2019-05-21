@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'json'
-gem 'pg'
 gem 'rest-client'
 gem 'sinatra'
 gem 'sinatra-content-for2'
