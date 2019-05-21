@@ -64,7 +64,7 @@ get '/' do
   fieldforce = []
   viewtype = session[:role]
   RestClient::Request.execute(method: :get,
-                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/fieldforce/#{viewtype}") do |fieldforce_response, _request, _result, &_block|
+                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/fieldforce/byType/#{viewtype}") do |fieldforce_response, _request, _result, &_block|
     unless fieldforce_response.empty?
       fieldforce = JSON.parse(fieldforce_response) unless fieldforce_response.code == 404
     end
