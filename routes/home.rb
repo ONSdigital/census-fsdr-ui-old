@@ -106,6 +106,7 @@ post '/searchresults' do
   surname     = params[:surname]
   job_role_id = params[:jobroleid]
   area_code   = params[:areacode]
+  id_badge_number   = params[:idbadgenumber]
 
   multi_query_flag = false
   search_params = 'employeeSearch?'
@@ -130,6 +131,12 @@ post '/searchresults' do
   unless area_code.empty?
     search_params += '&' if multi_query_flag
     search_params = search_params + 'areaCode=' + area_code
+    multi_query_flag = true
+  end
+
+  unless id_badge_number.empty?
+    search_params += '&' if multi_query_flag
+    search_params = search_params + 'idBadgeNo=' + id_badge_number
     multi_query_flag = true
   end
 
