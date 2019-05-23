@@ -84,12 +84,12 @@ end
 # Search Results
 post '/searchresults' do
   authenticate!
-  results = []
-  first_name  = params[:firstname]
-  surname     = params[:surname]
-  job_role_id = params[:jobroleid]
-  area_code   = params[:areacode]
-  id_badge_number   = params[:idbadgenumber]
+  results         = []
+  first_name      = params[:firstname]
+  surname         = params[:surname]
+  job_role_id     = params[:jobroleid]
+  area_code       = params[:areacode]
+  id_badge_number = params[:idbadgenumber]
 
   multi_query_flag = false
   search_params = 'employeeSearch?'
