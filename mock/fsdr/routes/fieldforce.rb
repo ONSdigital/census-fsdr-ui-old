@@ -11,8 +11,3 @@ end
 get '/fieldforce/surname/:surname' do |surname|
   erb :field_search, locals: { surname: surname }
 end
-
-# download file example
-get '/fieldforce/file/:consumer' do |consumer|
-  erb :field_force, locals: { consumer: consumer }
-end

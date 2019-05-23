@@ -75,22 +75,6 @@ get '/' do
   end
 end
 
-# Download file
-get '/download' do
-  authenticate!
-  role = session[:role]
-
-  RestClient::Request.execute(method: :get,
-                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/fieldforce/file/#{role}") do |download_file, _request, _result, &_block|
-    doc = "#{role}.csv"
-    File.open(doc, 'w') do |download|
-      download.puts download_file
-    end
-    send_file doc, type: 'text; charset=utf-8', disposition: 'attachment'
-  end
-  redirect request.referrer
-end
-
 # Search
 get '/search' do
   authenticate!
@@ -100,12 +84,12 @@ end
 # Search Results
 post '/searchresults' do
   authenticate!
-  results = []
-  first_name  = params[:firstname]
-  surname     = params[:surname]
-  job_role_id = params[:jobroleid]
-  area_code   = params[:areacode]
-  id_badge_number   = params[:idbadgenumber]
+  results         = []
+  first_name      = params[:firstname]
+  surname         = params[:surname]
+  job_role_id     = params[:jobroleid]
+  area_code       = params[:areacode]
+  id_badge_number = params[:idbadgenumber]
 
   multi_query_flag = false
   search_params = 'employeeSearch?'
