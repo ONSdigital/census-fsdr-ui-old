@@ -17,6 +17,8 @@ post '/signin/?' do
     redirect '/signin'
   else
     RestClient::Request.execute(method: :get,
+                                user: SPRING_SECURITY_USER_NAME,
+                                password: SPRING_SECURITY_USER_PASSWORD,
                                 url: "http://#{CENSUS_FSDR_HOST}:#{CENSUS_FSDR_PORT}/userAuth?password=#{params[:password]}&username=#{params[:username]}") do |userauth_response, _request, _result, &_block|
       results = JSON.parse(userauth_response) unless userauth_response.code == 404 || userauth_response.code == 401
       if !results.nil?

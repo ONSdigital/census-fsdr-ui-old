@@ -16,8 +16,11 @@ require_relative '../lib/core_ext/object'
 
 PROGRAM = 'fsdr'.freeze
 
-CENSUS_FSDR_HOST = ENV['CENSUS_FSDR_SERVICE_HOST'] || 'localhost'
-CENSUS_FSDR_PORT = ENV['CENSUS_FSDR_SERVICE_PORT'] || '5678'
+CENSUS_FSDR_HOST              = ENV['CENSUS_FSDR_SERVICE_HOST'] || 'localhost'
+CENSUS_FSDR_PORT              = ENV['CENSUS_FSDR_SERVICE_PORT'] || '5678'
+SPRING_SECURITY_USER_NAME     = ENV['SPRING_SECURITY_USER_NAME'] || 'user'
+SPRING_SECURITY_USER_PASSWORD = ENV['SPRING_SECURITY_USER_PASSWORD'] || 'pass'
+
 
 # Set global pagination options.
 WillPaginate.per_page = 20
@@ -64,6 +67,8 @@ get '/' do
   fieldforce = []
   viewtype = session[:role]
   RestClient::Request.execute(method: :get,
+                              user: SPRING_SECURITY_USER_NAME,
+                              password: SPRING_SECURITY_USER_PASSWORD,
                               url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/fieldforce/byType/#{viewtype}") do |fieldforce_response, _request, _result, &_block|
     unless fieldforce_response.empty?
       fieldforce = JSON.parse(fieldforce_response) unless fieldforce_response.code == 404
@@ -124,6 +129,8 @@ post '/searchresults' do
   end
 
   RestClient::Request.execute(method: :get,
+                              user: SPRING_SECURITY_USER_NAME,
+                              password: SPRING_SECURITY_USER_PASSWORD,
                               url: "http://#{CENSUS_FSDR_HOST}:#{CENSUS_FSDR_PORT}/fieldforce/#{search_params}") do |fieldforce_response, _request, _result, &_block|
     results = JSON.parse(fieldforce_response) unless fieldforce_response.code == 404
     erb :searchresults, locals: { title: 'Search Results',
