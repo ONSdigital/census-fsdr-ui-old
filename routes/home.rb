@@ -127,7 +127,6 @@ post '/searchresults' do
     search_params = search_params + 'idBadgeNo=' + id_badge_number
     multi_query_flag = true
   end
-
   RestClient::Request.execute(method: :get,
                               user: SPRING_SECURITY_USER_NAME,
                               password: SPRING_SECURITY_USER_PASSWORD,
