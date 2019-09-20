@@ -42,6 +42,7 @@ get '/fieldforce/:fieldworkerid' do |fieldworkerid|
   field_worker_job_roles = []
   field_worker_history = []
   role = session[:role]
+
   RestClient::Request.execute(method: :get,
                               user: SPRING_SECURITY_USER_NAME,
                               password: SPRING_SECURITY_USER_PASSWORD,
@@ -91,10 +92,12 @@ get '/fieldforce/:fieldworkerid' do |fieldworkerid|
     field_worker_history_html = Json2htmltable.create_table(field_worker_history)
   end
 
-  erb :field_worker, layout: :sidebar_layout, locals: { title: 'Field Worker',
-                                                        field_worker_details: field_worker_details_html,
-                                                        field_worker_devices: field_worker_devices_html,
-                                                        field_worker_job_roles: field_worker_job_roles_html,
-                                                        field_worker_history: field_worker_history_html }
+  field_worker_erb = 'field_worker_' + role
+
+  erb :"#{field_worker_erb}", layout: :sidebar_layout, locals: { title: 'Field Worker',
+                                                                 field_worker_details: field_worker_details,
+                                                                 field_worker_devices: field_worker_devices_html,
+                                                                 field_worker_job_roles: field_worker_job_roles_html,
+                                                                 field_worker_history_table: field_worker_history }
 
 end
