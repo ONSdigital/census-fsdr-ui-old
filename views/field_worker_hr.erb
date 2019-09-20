@@ -1,0 +1,401 @@
+<%= erb :menu, locals: { pageid: 'home' } %>
+
+<% unless field_worker_details.nil? %>
+Details for Field Worker
+<table class="primary">
+  <thead>
+    <tr>
+      <% if field_worker_details.has_key?('country') %>
+        <td>country</td>
+      <% end %>
+      <% if field_worker_details.has_key?('uniqueEmployeeId') %>
+        <td>uniqueEmployeeId</td>
+      <% end %>
+      <% if field_worker_details.has_key?('firstName') %>
+        <td>firstName</td>
+      <% end %>
+      <% if field_worker_details.has_key?('surname') %>
+        <td>surname</td>
+      <% end %>
+      <% if field_worker_details.has_key?('onsId') %>
+        <td>onsId</td>
+      <% end %>
+      <% if field_worker_details.has_key?('telephoneNumberContact1') %>
+        <td>telephoneNumberContact1</td>
+      <% end %>
+      <% if field_worker_details.has_key?('status') %>
+        <td>status</td>
+      <% end %>
+      <% if field_worker_details.has_key?('preferredName') %>
+        <td>preferredName</td>
+      <% end %>
+      <% if field_worker_details.has_key?('personalEmailAddress') %>
+        <td>personalEmailAddress</td>
+      <% end %>
+      <% if field_worker_details.has_key?('ingestDate') %>
+        <td>ingestDate</td>
+      <% end %>
+      <% if field_worker_details.has_key?('dob') %>
+        <td>dob</td>
+      <% end %>
+      <% if field_worker_details.has_key?('drivingInformation') %>
+        <td>drivingInformation</td>
+      <% end %>
+      <% if field_worker_details.has_key?('age') %>
+        <td>age</td>
+      <% end %>
+      <% if field_worker_details.has_key?('ethnicity') %>
+        <td>ethnicity</td>
+      <% end %>
+      <% if field_worker_details.has_key?('disability') %>
+        <td>disability</td>
+      <% end %>
+      <% if field_worker_details.has_key?('nationality') %>
+        <td>nationality</td>
+      <% end %>
+      <% if field_worker_details.has_key?('gender') %>
+        <td>gender</td>
+      <% end %>
+      <% if field_worker_details.has_key?('sexualOrientation') %>
+        <td>sexualOrientation</td>
+      <% end %>
+      <% if field_worker_details.has_key?('religion') %>
+        <td>religion</td>
+      <% end %>
+      <% if field_worker_details.has_key?('currentCivilServant') %>
+        <td>currentCivilServant</td>
+      <% end %>
+      <% if field_worker_details.has_key?('previousCivilServant') %>
+        <td>previousCivilServant</td>
+      <% end %>
+      <% if field_worker_details.has_key?('civilServicePensionRecipient') %>
+        <td>civilServicePensionRecipient</td>
+      <% end %>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <% if field_worker_details['country'].present? %>
+          <td><%=h field_worker_details['country'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['uniqueEmployeeId'].present? %>
+          <td><%=h field_worker_details['uniqueEmployeeId'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['firstName'].present? %>
+          <td><%=h field_worker_details['firstName'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['surname'].present? %>
+          <td><%=h field_worker_details['surname'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['onsId'].present? %>
+          <td><%=h field_worker_details['onsId'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['telephoneNumberContact1'].present? %>
+          <td><%=h field_worker_details['telephoneNumberContact1'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['status'].present? %>
+          <td><%=h field_worker_details['status'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['preferredName'].present? %>
+          <td><%=h field_worker_details['preferredName'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['personalEmailAddress'].present? %>
+          <td><%=h field_worker_details['personalEmailAddress'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['ingestDate'].present? %>
+          <td><%=h field_worker_details['ingestDate'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['dob'].present? %>
+          <td><%=h field_worker_details['dob'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['drivingInformation'].present? %>
+          <td><%=h field_worker_details['drivingInformation'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['age'].present? %>
+          <td><%=h field_worker_details['age'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['ethnicity'].present? %>
+          <td><%=h field_worker_details['ethnicity'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['disability'].present? %>
+          <td><%=h field_worker_details['disability'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['nationality'].present? %>
+          <td><%=h field_worker_details['nationality'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['gender'].present? %>
+          <td><%=h field_worker_details['gender'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['sexualOrientation'].present? %>
+          <td><%=h field_worker_details['sexualOrientation'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['religion'].present? %>
+          <td><%=h field_worker_details['religion'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['currentCivilServant'].present? %>
+          <td><%=h field_worker_details['currentCivilServant'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['previousCivilServant'].present? %>
+          <td><%=h field_worker_details['previousCivilServant'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_details['civilServicePensionRecipient'].present? %>
+          <td><%=h field_worker_details['civilServicePensionRecipient'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+    </tr>
+  </tbody>
+</table>
+<% else %>
+No Field Worker for searched ID
+<% end %>
+<br>
+<% unless field_worker_devices.nil? %>
+Devices for Field Worker
+<%= field_worker_devices %>
+<% else %>
+Field Worker has no allocated devices
+<% end %>
+<br>
+<% unless field_worker_job_roles.nil? %>
+Job Roles for Field Worker
+<%= field_worker_job_roles %>
+<% else %>
+Field Worker has no Job Roles
+<% end %>
+<br>
+<% unless field_worker_history_table.nil? %>
+History for Field Worker
+<table class="primary">
+  <thead>
+    <tr>
+      <% if field_worker_history_table[0].has_key?('country') %>
+        <td>country</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('uniqueEmployeeId') %>
+        <td>uniqueEmployeeId</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('firstName') %>
+        <td>firstName</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('surname') %>
+        <td>surname</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('onsId') %>
+        <td>onsId</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('telephoneNumberContact1') %>
+        <td>telephoneNumberContact1</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('status') %>
+        <td>status</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('preferredName') %>
+        <td>preferredName</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('personalEmailAddress') %>
+        <td>personalEmailAddress</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('ingestDate') %>
+        <td>ingestDate</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('dob') %>
+        <td>dob</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('drivingInformation') %>
+        <td>drivingInformation</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('age') %>
+        <td>age</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('ethnicity') %>
+        <td>ethnicity</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('disability') %>
+        <td>disability</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('nationality') %>
+        <td>nationality</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('gender') %>
+        <td>gender</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('sexualOrientation') %>
+        <td>sexualOrientation</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('religion') %>
+        <td>religion</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('currentCivilServant') %>
+        <td>currentCivilServant</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('previousCivilServant') %>
+        <td>previousCivilServant</td>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('civilServicePensionRecipient') %>
+        <td>civilServicePensionRecipient</td>
+      <% end %>
+      </tr>
+  </thead>
+  <tbody>
+    <% field_worker_history_table.each_with_index do |field_worker_history| %>
+      <tr>
+        <% if field_worker_history['country'].present? %>
+          <td><%=h field_worker_history['country'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['uniqueEmployeeId'].present? %>
+          <td><%=h field_worker_history['uniqueEmployeeId'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['firstName'].present? %>
+          <td><%=h field_worker_history['firstName'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['surname'].present? %>
+          <td><%=h field_worker_history['surname'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['onsId'].present? %>
+          <td><%=h field_worker_history['onsId'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['telephoneNumberContact1'].present? %>
+          <td><%=h field_worker_history['telephoneNumberContact1'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['status'].present? %>
+          <td><%=h field_worker_history['status'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['preferredName'].present? %>
+          <td><%=h field_worker_history['preferredName'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['personalEmailAddress'].present? %>
+          <td><%=h field_worker_history['personalEmailAddress'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['ingestDate'].present? %>
+          <td><%=h field_worker_history['ingestDate'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['dob'].present? %>
+          <td><%=h field_worker_history['dob'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['drivingInformation'].present? %>
+          <td><%=h field_worker_history['drivingInformation'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['age'].present? %>
+          <td><%=h field_worker_history['age'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['ethnicity'].present? %>
+          <td><%=h field_worker_history['ethnicity'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['disability'].present? %>
+          <td><%=h field_worker_history['disability'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['nationality'].present? %>
+          <td><%=h field_worker_history['nationality'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['gender'].present? %>
+          <td><%=h field_worker_history['gender'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['sexualOrientation'].present? %>
+          <td><%=h field_worker_history['sexualOrientation'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['religion'].present? %>
+          <td><%=h field_worker_history['religion'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['currentCivilServant'].present? %>
+          <td><%=h field_worker_history['currentCivilServant'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['previousCivilServant'].present? %>
+          <td><%=h field_worker_history['previousCivilServant'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['civilServicePensionRecipient'].present? %>
+          <td><%=h field_worker_history['civilServicePensionRecipient'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+No History for Field Worker
+<% end %>

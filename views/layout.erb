@@ -107,7 +107,7 @@
 
             <% [:error, :notice].each do |key| %>
             <% if flash[key] %>
-              <p class="message"><%= flash[key] %></p>
+              <p class="message" ><b><%= flash[key] %></b></p>
             <% end %>
             <% end %>
             <%= yield_content :form_errors %>

@@ -21,7 +21,6 @@ CENSUS_FSDR_PORT              = ENV['CENSUS_FSDR_SERVICE_PORT'] || '5678'
 SPRING_SECURITY_USER_NAME     = ENV['SPRING_SECURITY_USER_NAME'] || 'user'
 SPRING_SECURITY_USER_PASSWORD = ENV['SPRING_SECURITY_USER_PASSWORD'] || 'pass'
 
-
 # Set global pagination options.
 WillPaginate.per_page = 20
 
@@ -84,6 +83,31 @@ end
 get '/search' do
   authenticate!
   erb :search, locals: { title: 'Search' }
+end
+
+# Download
+get '/download' do
+  authenticate!
+  role = session[:role]
+
+  if role == 'manager'
+
+    RestClient::Request.execute(method: :get,
+                                user: SPRING_SECURITY_USER_NAME,
+                                password: SPRING_SECURITY_USER_PASSWORD,
+                                url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + '/fieldforce/allEmployeeCsv') do |download_file, _request, _result, &_block|
+      doc = 'data.csv'
+      File.open(doc, 'w') do |download|
+        download.puts download_file
+      end
+      send_file doc, type: 'text; charset=utf-8', disposition: 'attachment'
+    end
+    redirect request.referrer
+  else
+    flash[:notice] = 'You do not have permissions to download CSV?'
+    redirect '/'
+  end
+
 end
 
 # Search Results
