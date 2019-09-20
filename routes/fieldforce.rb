@@ -95,9 +95,9 @@ get '/fieldforce/:fieldworkerid' do |fieldworkerid|
   field_worker_erb = 'field_worker_' + role
 
   erb :"#{field_worker_erb}", layout: :sidebar_layout, locals: { title: 'Field Worker',
-                                                        field_worker_details: field_worker_details,
-                                                        field_worker_devices: field_worker_devices_html,
-                                                        field_worker_job_roles: field_worker_job_roles_html,
-                                                        field_worker_history_table: field_worker_history }
+                                                                 field_worker_details: field_worker_details,
+                                                                 field_worker_devices: field_worker_devices_html,
+                                                                 field_worker_job_roles: field_worker_job_roles_html,
+                                                                 field_worker_history_table: field_worker_history }
 
 end

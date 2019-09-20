@@ -68,7 +68,7 @@ get '/' do
   RestClient::Request.execute(method: :get,
                               user: SPRING_SECURITY_USER_NAME,
                               password: SPRING_SECURITY_USER_PASSWORD,
-                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/fieldforce/byType/#{viewtype}") do |fieldforce_response, _request, _result, &_block|
+                              url: "http://#{CENSUS_FSDR_HOST}:#{CENSUS_FSDR_PORT}/fieldforce/byType/#{viewtype}") do |fieldforce_response, _request, _result, &_block|
     unless fieldforce_response.empty?
       fieldforce = JSON.parse(fieldforce_response) unless fieldforce_response.code == 404
     end
@@ -90,12 +90,12 @@ get '/download' do
   authenticate!
   role = session[:role]
 
-  if role == 'manager'
+  if role.eql?('manager')
 
     RestClient::Request.execute(method: :get,
                                 user: SPRING_SECURITY_USER_NAME,
                                 password: SPRING_SECURITY_USER_PASSWORD,
-                                url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + '/fieldforce/allEmployeeCsv') do |download_file, _request, _result, &_block|
+                                url: "http://#{CENSUS_FSDR_HOST}:#{CENSUS_FSDR_PORT}/fieldforce/allEmployeeCsv") do |download_file, _request, _result, &_block|
       doc = 'data.csv'
       File.open(doc, 'w') do |download|
         download.puts download_file
