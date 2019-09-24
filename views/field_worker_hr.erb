@@ -206,7 +206,7 @@ Job Roles for Field Worker
 Field Worker has no Job Roles
 <% end %>
 <br>
-<% unless field_worker_history_table.nil? %>
+<% if field_worker_history_table.any? %>
 History for Field Worker
 <table class="primary">
   <thead>
