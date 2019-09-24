@@ -26,12 +26,6 @@ Details for Field Worker
       <% if field_worker_details.has_key?('status') %>
         <td>status</td>
       <% end %>
-      <% if field_worker_details.has_key?('contractStartDate') %>
-        <td>contractStartDate</td>
-      <% end %>
-      <% if field_worker_details.has_key?('contractEndDate') %>
-        <td>contractEndDate</td>
-      <% end %>
       <% if field_worker_details.has_key?('idBadgeNo') %>
         <td>idBadgeNo</td>
       <% end %>
@@ -155,16 +149,6 @@ Details for Field Worker
         <% end %>
         <% if field_worker_details['status'].present? %>
           <td><%=h field_worker_details['status'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if field_worker_details['contractStartDate'].present? %>
-          <td><%=h field_worker_details['contractStartDate'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if field_worker_details['contractEndDate'].present? %>
-          <td><%=h field_worker_details['contractEndDate'] %></td>
         <% else %>
           <td>-</td>
         <% end %>
@@ -360,12 +344,6 @@ History for Field Worker
       <% if field_worker_history_table[0].has_key?('status') %>
         <td>status</td>
       <% end %>
-      <% if field_worker_history_table[0].has_key?('contractStartDate') %>
-        <td>contractStartDate</td>
-      <% end %>
-      <% if field_worker_history_table[0].has_key?('contractEndDate') %>
-        <td>contractEndDate</td>
-      <% end %>
       <% if field_worker_history_table[0].has_key?('idBadgeNo') %>
         <td>idBadgeNo</td>
       <% end %>
@@ -490,16 +468,6 @@ History for Field Worker
         <% end %>
         <% if field_worker_history['status'].present? %>
           <td><%=h field_worker_history['status'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if field_worker_history['contractStartDate'].present? %>
-          <td><%=h field_worker_history['contractStartDate'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if field_worker_history['contractEndDate'].present? %>
-          <td><%=h field_worker_history['contractEndDate'] %></td>
         <% else %>
           <td>-</td>
         <% end %>
