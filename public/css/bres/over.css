@@ -204,6 +204,9 @@ dd {
 table.primary,
 table.secondary{
  font-size: 81.25%;
+ display: block;
+ overflow-x: auto;
+ white-space: nowrap;
 }
 
 table.primary thead tr,
