@@ -11,8 +11,9 @@
   <thead>
     <tr>
       <th>ID</th>
-      <td>Name</td>
-      <th></th>
+      <th>Name</th>
+      <th>Employee Details</th>
+      <th>Employee History</th>
     </tr>
   </thead>
   <tbody>
@@ -29,6 +30,7 @@
           <td>-</td>
         <% end %>
         <td><a href="/fieldforce/<%=fieldmember['uniqueEmployeeId'] %>">View Field Worker</a></td>
+        <td><a href="/fieldforce/historyById/<%=fieldmember['uniqueEmployeeId'] %>">View Field Worker History</a></td>
       <% end %>
     </tr>
   </tbody>

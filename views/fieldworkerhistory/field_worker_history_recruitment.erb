@@ -1,0 +1,345 @@
+<%= erb :menu, locals: {pageid: 'home'} %>
+
+<% unless field_worker_history_table.nil? %>
+  History for Field Worker
+  <table class="primary">
+    <thead class="primary">
+    <tr>
+      <% if field_worker_history_table[0].has_key?('ingestDate') %>
+        <th>Ingest Date</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('uniqueEmployeeId') %>
+        <th>Employee ID</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('firstName') %>
+        <th>First Name</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('preferredName') %>
+        <th>Preferred Name</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('surname') %>
+        <th>Surname</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('onsId') %>
+        <th>ONS ID</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('telephoneNumberContact1') %>
+        <th>Telephone Number</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('status') %>
+        <th>Status</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('idBadgeNo') %>
+        <th>Badge No</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('personalEmailAddress') %>
+        <th>Personal Email Address</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('address1') %>
+        <th>Address Line 1</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('address2') %>
+        <th>Address Line 2</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('county') %>
+        <th>County</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('postcode') %>
+        <th>Postcode</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('country') %>
+        <th>Country</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('emergencyContactFirstName') %>
+        <th>Emergency Contact 1 - First Name</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('emergencyContactSurname') %>
+        <th>Emergency Contact 1 - Second Name</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('emergencyContactMobileNo') %>
+        <th>Emergency Contact 1 - Mobile No</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('emergencyContactFirstName2') %>
+        <th>Emergency Contact 2 - First Name</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('emergencyContactSurname2') %>
+        <th>Emergency Contact 2 - Second Name</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('emergencyContactMobileNo2') %>
+        <th>Emergency Contact 1- Mobile No</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('dob') %>
+        <th>Date of Birth</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('age') %>
+        <th>Age</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('ethnicity') %>
+        <th>Ethnicity</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('disability') %>
+        <th>Disability</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('nationality') %>
+        <th>Nationality</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('gender') %>
+        <th>Gender</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('sexualOrientation') %>
+        <th>Sexual Orientation</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('religion') %>
+        <th>Religion</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('welshLanguageSpeaker') %>
+        <th>Welsh Language Speaker</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('anyLanguagesSpoken') %>
+        <th>Languages Spoken</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('mobility') %>
+        <th>Mobility</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('workRestrictions') %>
+        <th>Work Restrictions</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('weeklyHours') %>
+        <th>Weekly Hours</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('reasonableAdjustments') %>
+        <th>Reasonable Adjustments</th>
+      <% end %>
+      <% if field_worker_history_table[0].has_key?('mobileStaff') %>
+        <th>Mobile Staff</th>
+      <% end %>
+    </tr>
+    </thead>
+    <tbody class="primary">
+    <% field_worker_history_table.each_with_index do |field_worker_history| %>
+      <tr>
+        <% if field_worker_history['ingestDate'].present? %>
+          <td><%= h field_worker_history['ingestDate'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['uniqueEmployeeId'].present? %>
+          <td><%= h field_worker_history['uniqueEmployeeId'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['firstName'].present? %>
+          <td><%= h field_worker_history['firstName'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['preferredName'].present? %>
+          <td><%= h field_worker_history['preferredName'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['surname'].present? %>
+          <td><%= h field_worker_history['surname'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['onsId'].present? %>
+          <td><%= h field_worker_history['onsId'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['telephoneNumberContact1'].present? %>
+          <td><%= h field_worker_history['telephoneNumberContact1'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['status'].present? %>
+          <td><%= h field_worker_history['status'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['idBadgeNo'].present? %>
+          <td><%= h field_worker_history['idBadgeNo'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['personalEmailAddress'].present? %>
+          <td><%= h field_worker_history['personalEmailAddress'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['address1'].present? %>
+          <td><%= h field_worker_history['address1'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['address2'].present? %>
+          <td><%= h field_worker_history['address2'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['county'].present? %>
+          <td><%= h field_worker_history['county'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['postcode'].present? %>
+          <td><%= h field_worker_history['postcode'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['country'].present? %>
+          <td><%= h field_worker_history['country'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['emergencyContactFirstName'].present? %>
+          <td><%= h field_worker_history['emergencyContactFirstName'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['emergencyContactSurname'].present? %>
+          <td><%= h field_worker_history['emergencyContactSurname'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['emergencyContactMobileNo'].present? %>
+          <td><%= h field_worker_history['emergencyContactMobileNo'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['emergencyContactFirstName2'].present? %>
+          <td><%= h field_worker_history['emergencyContactFirstName2'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['emergencyContactSurname2'].present? %>
+          <td><%= h field_worker_history['emergencyContactSurname2'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['emergencyContactMobileNo2'].present? %>
+          <td><%= h field_worker_history['emergencyContactMobileNo2'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['anyLanguagesSpoken'].present? %>
+          <td><%= h field_worker_history['anyLanguagesSpoken'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['dob'].present? %>
+          <td><%= h field_worker_history['dob'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['age'].present? %>
+          <td><%= h field_worker_history['age'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['ethnicity'].present? %>
+          <td><%= h field_worker_history['ethnicity'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['disability'].present? %>
+          <td><%= h field_worker_history['disability'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['nationality'].present? %>
+          <td><%= h field_worker_history['nationality'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['gender'].present? %>
+          <td><%= h field_worker_history['gender'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['sexualOrientation'].present? %>
+          <td><%= h field_worker_history['sexualOrientation'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['religion'].present? %>
+          <td><%= h field_worker_history['religion'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['welshLanguageSpeaker'].present? %>
+          <td><%= h field_worker_history['welshLanguageSpeaker'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['mobility'].present? %>
+          <td><%= h field_worker_history['mobility'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['workRestrictions'].present? %>
+          <td><%= h field_worker_history['workRestrictions'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['weeklyHours'].present? %>
+          <td><%= h field_worker_history['weeklyHours'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['reasonableAdjustments'].present? %>
+          <td><%= h field_worker_history['reasonableAdjustments'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_history['mobileStaff'].present? %>
+          <% if field_worker_history['mobileStaff'] == false %>
+          <td>Yes</td>
+          <% else %>
+          <td>No</td>
+          <% end %>
+        <% else %>
+          <td>-</td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  No History for Field Worker
+<% end %>
+<br>
+<% unless field_worker_job_roles_history.nil? %>
+  Job Role History for Field Worker
+  <table class="primary">
+    <thead>
+    <tr>
+      <% if field_worker_job_roles_history[0].has_key?('contractStartDate') %>
+        <th>Operational Start Date</th>
+      <% end %>
+      <% if field_worker_job_roles_history[0].has_key?('operationalEndDate') %>
+        <th>Operational End Date</th>
+      <% end %>
+    </tr>
+    </thead>
+    <tbody>
+    <% field_worker_job_roles_history.each_with_index do |field_worker_job_roles_history| %>
+      <tr>
+        <% if field_worker_job_roles_history['contractStartDate'].present? %>
+          <td><%= h field_worker_job_roles_history['contractStartDate'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if field_worker_job_roles_history['operationalEndDate'].present? %>
+          <td><%= h field_worker_job_roles_history['operationalEndDate'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  Field Worker has no Job Role History
+<% end %>
