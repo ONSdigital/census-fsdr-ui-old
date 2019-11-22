@@ -226,23 +226,29 @@ table.secondary tbody tr:hover{
 }
 
 table.primary th, table.primary  td,
-table.secondary th, table.secondary  td{
+table.secondary th, table.secondary  td {
   vertical-align: top;
   text-align: left;
   padding: 0.5rem;
 }
 
 table.primary th,
-table.secondary th{
+table.secondary th {
   padding-bottom: 0.25rem;
   background: #e4e8eb;
   background: #fff;
+
 }
 
-
-
-
-
+table.tab-emp-details{
+    font-size: 81.25%;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    background: #e4e8eb;
+    background: #fff;
+    padding-bottom: 50px;
+}
 
 form.form-edit-email{
   display: block;
@@ -269,4 +275,85 @@ form.form-edit-email .btn-edit-email{
 
 form.form-edit-email a.cancel-edit-email{
   font-size: 81.25%;
+}
+
+.grid-container {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(4, [col] auto ) ;
+    grid-template-rows: repeat(3, [row] auto  );
+    padding-bottom: 100px;
+}
+
+.grid-container-recruitment {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(4, [col] auto ) ;
+    grid-template-rows: repeat(4, [row] auto  );
+    padding-bottom: 100px;
+}
+
+.emp-headers {
+    font-weight: bold;
+}
+
+.emp-details {
+    grid-column: col / span 2;
+    grid-row: row;
+    padding: 0;
+}
+
+.emp-job-role {
+    grid-column: col 3 / span 2;
+    grid-row: row;
+}
+
+.emp-employment-status {
+    grid-column: 1 / span 3;
+    grid-row: row 2;
+}
+
+.emp-personal-details {
+    grid-column: col 3 / span 2;
+    grid-row: row 2;
+}
+
+.emp-personal-details-hr {
+    grid-column: col 3 / span 2;
+    grid-row: row 1;
+}
+
+.emp-other-personal-details {
+    grid-column: 1 / span 2;
+    grid-row: row 3;
+}
+
+.emp-diversity-information {
+    grid-column: col 3 / span 2;
+    grid-row: row 2;
+}
+
+.emp-diversity-information-recruitment {
+    grid-column: col 3 / span 2;
+    grid-row: row 3;
+}
+
+.emp-device-details {
+    grid-column: col / auto;
+    grid-row: row 3;
+}
+
+.emp-device-details-recruitment {
+    grid-column: col / auto;
+    grid-row: row 4;
+}
+
+table.tab-emp-details th{
+    vertical-align: center;
+    text-align: left;
+    padding-right: 15px;
+}
+table.tab-emp-details td{
+    vertical-align: center;
+    text-align: left;
 }

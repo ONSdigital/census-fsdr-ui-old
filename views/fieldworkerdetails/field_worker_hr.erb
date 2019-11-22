@@ -1,0 +1,342 @@
+<%= erb :menu, locals: {pageid: 'home'} %>
+
+<div class="grid-container">
+  <div class="emp-details">
+    <% unless field_worker_details.nil? %>
+      <p class="emp-headers">Details for Field Worker</p>
+      <table class="tab-emp-details">
+        <tr>
+          <th>
+            <% if field_worker_details.has_key?('firstName') && field_worker_details.has_key?('surname') %>
+              Name
+            <% end %>
+          </th>
+          <% if field_worker_details['firstName'].present? && field_worker_details['surname'].present? %>
+            <td><%= h field_worker_details['firstName'] %> <%= h field_worker_details['surname'] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+        </tr>
+        <tr>
+          <th>
+            <% if field_worker_details.has_key?('preferredName') %>
+              Preferred Name
+            <% end %>
+          </th>
+          <% if field_worker_details['preferredName'].present? %>
+            <td><%= h field_worker_details['preferredName'] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+        </tr>
+        <tr>
+          <th>
+            <% if field_worker_details.has_key?('onsId') %>
+              ONS Email Address
+            <% end %>
+          </th>
+          <% if field_worker_details['onsId'].present? %>
+            <td><%= h field_worker_details['onsId'] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+        </tr>
+        <tr>
+          <th>
+            <% if field_worker_details.has_key?('telephoneNumberContact1') %>
+              Phone Number
+            <% end %>
+          </th>
+          <% if field_worker_details['telephoneNumberContact1'].present? %>
+            <td><%= h field_worker_details['telephoneNumberContact1'] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+
+
+  <div class="emp-personal-details-hr">
+    <% unless field_worker_details.nil? && field_worker_job_roles.nil? %>
+      <p class="emp-headers">Personal Contact Details</p>
+      <table class="tab-emp-details">
+        <tr>
+          <th>
+            <% if field_worker_details.has_key?('telephoneNumberContact1') %>
+              Phone Number 1
+            <% end %>
+          </th>
+          <% if field_worker_details['telephoneNumberContact1'].present? %>
+            <td><%= h field_worker_details['telephoneNumberContact1'] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+        </tr>
+        <tr>
+          <th>
+            <% if field_worker_details.has_key?('personalEmailAddress') %>
+              Personal Email Account
+            <% end %>
+          </th>
+          <% if field_worker_details['personalEmailAddress'].present? %>
+            <td><%= h field_worker_details['personalEmailAddress'] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+        </tr>
+      </table>
+    <p class="emp-headers">Other Personal Details</p>
+    <table class="tab-emp-details">
+      <tr>
+        <th>
+          <% if field_worker_details.has_key?('currentCivilServant') %>
+            Current Civil Servant
+          <% end %>
+        </th>
+        <% if field_worker_details['currentCivilServant'].present? %>
+          <td><%= h field_worker_details['currentCivilServant'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+      </tr>
+      <tr>
+        <th>
+          <% if field_worker_details.has_key?('previousCivilServant') %>
+            Previous Civil Servant
+          <% end %>
+        </th>
+        <% if field_worker_details['previousCivilServant'].present? %>
+          <td><%= h field_worker_details['previousCivilServant'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+      </tr>
+      <tr>
+        <th>
+          <% if field_worker_details.has_key?('civilServicePensionRecipient') %>
+            Civil Service Pension Recipient
+          <% end %>
+        </th>
+        <% if field_worker_details['civilServicePensionRecipient'].present? %>
+          <td><%= h field_worker_details['civilServicePensionRecipient'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+      </tr>
+      <tr>
+        <th>
+          <% if field_worker_details.has_key?('dob') %>
+            Date of Birth
+          <% end %>
+        </th>
+        <% if field_worker_details['dob'].present? %>
+          <td><%= h field_worker_details['dob'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+      </tr>
+      <tr>
+        <th>
+          <% if field_worker_details.has_key?('drivingInformation') %>
+            Driving Information
+          <% end %>
+        </th>
+        <% if field_worker_details['drivingInformation'].present? %>
+          <td><%= h field_worker_details['drivingInformation'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+      </tr>
+    </table>
+    <% end %>
+  </div>
+
+
+  <div class="emp-employment-status">
+    <% unless field_worker_details.nil? && field_worker_job_roles.nil? %>
+      <p class="emp-headers">Employment Status</p>
+      <table class="tab-emp-details">
+        <tr>
+          <th>
+            <% if field_worker_job_roles.has_key?('assignmentStatus') %>
+              Assignment Status
+            <% end %>
+          </th>
+          <% if field_worker_job_roles['assignmentStatus'].present? %>
+            <td><%= h field_worker_job_roles['assignmentStatus'] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+        </tr>
+        <tr>
+          <th>
+            <% if field_worker_job_roles.has_key?('crStatus') %>
+              Status
+            <% end %>
+          </th>
+          <% if field_worker_job_roles['crStatus'].present? %>
+            <td><%= h field_worker_job_roles['crStatus'] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+        </tr>
+        <tr>
+          <th>
+            <% if field_worker_job_roles.has_key?('operationalEndDate') %>
+              Operational End Date
+            <% end %>
+          </th>
+          <% if field_worker_job_roles['operationalEndDate'].present? %>
+            <td><%= h field_worker_job_roles['operationalEndDate'] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+        </tr>
+        <tr>
+          <th>
+            <% if field_worker_details.has_key?('ingestDate') %>
+              Ingest Date
+            <% end %>
+          </th>
+          <% if field_worker_details['ingestDate'].present? %>
+            <td><%= h field_worker_details['ingestDate'] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+
+
+  <div class="emp-diversity-information">
+    <% unless field_worker_details.nil? && field_worker_job_roles.nil? %>
+      <p class="emp-headers">Diversity Information</p>
+      <table class="tab-emp-details">
+        <tr>
+          <th>
+            <% if field_worker_details.has_key?('age') %>
+              Age
+            <% end %>
+          </th>
+          <% if field_worker_details['age'].present? %>
+            <td><%= h field_worker_details['age'] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+        </tr>
+        <tr>
+          <th>
+            <% if field_worker_details.has_key?('ethnicity') %>
+              Ethnicity
+            <% end %>
+          </th>
+          <% if field_worker_details['ethnicity'].present? %>
+            <td><%= h field_worker_details['ethnicity'] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+        </tr>
+        <tr>
+        <th>
+          <% if field_worker_details.has_key?('disability') %>
+            Disability
+          <% end %>
+        </th>
+        <% if field_worker_details['disability'].present? %>
+          <td><%= h field_worker_details['disability'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        </tr>
+        <tr>
+          <th>
+            <% if field_worker_details.has_key?('nationality') %>
+              Nationality
+            <% end %>
+          </th>
+          <% if field_worker_details['nationality'].present? %>
+            <td><%= h field_worker_details['nationality'] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+        </tr>
+        <tr>
+          <th>
+            <% if field_worker_details.has_key?('gender') %>
+              Gender
+            <% end %>
+          </th>
+          <% if field_worker_details['gender'].present? %>
+            <td><%= h field_worker_details['gender'] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+        </tr>
+        <tr>
+          <th>
+            <% if field_worker_details.has_key?('sexualOrientation') %>
+              Sexual Orientation
+            <% end %>
+          </th>
+          <% if field_worker_details['sexualOrientation'].present? %>
+            <td><%= h field_worker_details['sexualOrientation'] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+        </tr>
+        <tr>
+          <th>
+            <% if field_worker_details.has_key?('religion') %>
+              Religion
+            <% end %>
+          </th>
+          <% if field_worker_details['religion'].present? %>
+            <td><%= h field_worker_details['religion'] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+
+
+  <div class="emp-device-details">
+    <% unless field_worker_devices.nil? %>
+      <p class="emp-headers">Devices for Field Worker</p>
+      <table class="primary">
+        <thead class="primary">
+        <tr>
+          <% if field_worker_devices[0].has_key?('fieldDevicePhoneNumber') %>
+            <th>Device Phone Number</th>
+          <% end %>
+          <% if field_worker_devices[0].has_key?('deviceType') %>
+            <th>Device Type</th>
+          <% end %>
+        </tr>
+        </thead>
+        <tbody class="primary">
+        <% field_worker_devices.each_with_index do |field_worker_devices| %>
+          <tr>
+            <% if field_worker_devices['fieldDevicePhoneNumber'].present? %>
+              <td><%= h field_worker_devices['fieldDevicePhoneNumber'] %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+            <% if field_worker_devices['deviceType'].present? %>
+              <td><%= h field_worker_devices['deviceType'] %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      Field Worker has no allocated devices
+    <% end %>
+  </div>
+</div>

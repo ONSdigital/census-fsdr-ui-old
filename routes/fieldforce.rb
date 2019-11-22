@@ -40,7 +40,6 @@ get '/fieldforce/:fieldworkerid' do |fieldworkerid|
   field_worker_details = []
   field_worker_devices = []
   field_worker_job_roles = []
-  field_worker_history = []
   role = session[:role]
 
   RestClient::Request.execute(method: :get,
@@ -64,41 +63,23 @@ get '/fieldforce/:fieldworkerid' do |fieldworkerid|
   RestClient::Request.execute(method: :get,
                               user: SPRING_SECURITY_USER_NAME,
                               password: SPRING_SECURITY_USER_PASSWORD,
-                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/jobRoles/byEmployee/#{fieldworkerid}") do |field_worker_job_roles_response, _request, _result, &_block|
+                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/jobRoles/currentRole/byEmployee/#{fieldworkerid}") do |field_worker_job_roles_response, _request, _result, &_block|
     unless field_worker_job_roles_response.empty?
       field_worker_job_roles = JSON.parse(field_worker_job_roles_response) unless field_worker_job_roles_response.code == 404
     end
   end
 
-  RestClient::Request.execute(method: :get,
-                              user: SPRING_SECURITY_USER_NAME,
-                              password: SPRING_SECURITY_USER_PASSWORD,
-                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/fieldforce/historyById/#{role}/#{fieldworkerid}") do |field_worker_history_response, _request, _result, &_block|
-    unless field_worker_history_response.empty?
-      field_worker_history = JSON.parse(field_worker_history_response) unless field_worker_history_response.code == 404
-    end
-  end
 
-  if field_worker_details.any?
-    field_worker_details_html = Json2htmltable.create_table(field_worker_details)
-  end
-  if field_worker_devices.any?
-    field_worker_devices_html = Json2htmltable.create_table(field_worker_devices)
-  end
-  if field_worker_job_roles.any?
-    field_worker_job_roles_html = Json2htmltable.create_table(field_worker_job_roles)
-  end
-  if field_worker_history.any?
-    field_worker_history_html = Json2htmltable.create_table(field_worker_history)
-  end
+  # if field_worker_devices.any?
+  #   field_worker_devices_html = Json2htmltable.create_table(field_worker_devices)
+  # end
 
-  field_worker_erb = 'field_worker_' + role
+  field_worker_erb = 'fieldworkerdetails/field_worker_' + role
 
-  erb :"#{field_worker_erb}", layout: :sidebar_layout, locals: { title: 'Field Worker',
+  erb :"#{field_worker_erb}", layout: :sidebar_layout, locals: { title:'Worker Details',
                                                                  field_worker_details: field_worker_details,
-                                                                 field_worker_devices: field_worker_devices_html,
-                                                                 field_worker_job_roles: field_worker_job_roles_html,
-                                                                 field_worker_history_table: field_worker_history }
+                                                                 field_worker_job_roles: field_worker_job_roles,
+                                                                 field_worker_devices: field_worker_devices}
 
 end
 
