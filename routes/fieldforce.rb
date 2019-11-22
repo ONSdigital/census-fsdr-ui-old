@@ -23,7 +23,7 @@ get '/fieldforce/view/:viewtype' do |viewtype|
   RestClient::Request.execute(method: :get,
                               user: SPRING_SECURITY_USER_NAME,
                               password: SPRING_SECURITY_USER_PASSWORD,
-                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/fieldforce/byType/#{viewtype}") do |fieldforce_response, _request, _result, &_block|
+                              url: "http://#{CENSUS_FSDR_HOST}:#{CENSUS_FSDR_PORT}/fieldforce/byType/#{viewtype}") do |fieldforce_response, _request, _result, &_block|
     unless fieldforce_response.empty?
       fieldforce = JSON.parse(fieldforce_response) unless fieldforce_response.code == 404
     end
@@ -46,7 +46,7 @@ get '/fieldforce/:fieldworkerid' do |fieldworkerid|
   RestClient::Request.execute(method: :get,
                               user: SPRING_SECURITY_USER_NAME,
                               password: SPRING_SECURITY_USER_PASSWORD,
-                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/fieldforce/byId/#{role}/#{fieldworkerid}") do |field_worker_details_response, _request, _result, &_block|
+                              url: "http://#{CENSUS_FSDR_HOST}:#{CENSUS_FSDR_PORT}/fieldforce/byId/#{role}/#{fieldworkerid}") do |field_worker_details_response, _request, _result, &_block|
     unless field_worker_details_response.empty?
       field_worker_details = JSON.parse(field_worker_details_response) unless field_worker_details_response.code == 404
     end
@@ -55,7 +55,7 @@ get '/fieldforce/:fieldworkerid' do |fieldworkerid|
   RestClient::Request.execute(method: :get,
                               user: SPRING_SECURITY_USER_NAME,
                               password: SPRING_SECURITY_USER_PASSWORD,
-                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/devices/byEmployee/#{fieldworkerid}") do |field_worker_devices_response, _request, _result, &_block|
+                              url: "http://#{CENSUS_FSDR_HOST}:#{CENSUS_FSDR_PORT}/devices/byEmployee/#{fieldworkerid}") do |field_worker_devices_response, _request, _result, &_block|
     unless field_worker_devices_response.empty?
       field_worker_devices = JSON.parse(field_worker_devices_response) unless field_worker_devices_response.code == 404
     end
@@ -68,7 +68,7 @@ get '/fieldforce/:fieldworkerid' do |fieldworkerid|
   RestClient::Request.execute(method: :get,
                               user: SPRING_SECURITY_USER_NAME,
                               password: SPRING_SECURITY_USER_PASSWORD,
-                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/jobRoles/currentRole/byEmployee/#{fieldworkerid}") do |field_worker_job_roles_response, _request, _result, &_block|
+                              url: "http://#{CENSUS_FSDR_HOST}:#{CENSUS_FSDR_PORT}/jobRoles/currentRole/byEmployee/#{fieldworkerid}") do |field_worker_job_roles_response, _request, _result, &_block|
     unless field_worker_job_roles_response.empty?
       field_worker_job_roles = JSON.parse(field_worker_job_roles_response) unless field_worker_job_roles_response.code == 404
     end
@@ -77,7 +77,7 @@ get '/fieldforce/:fieldworkerid' do |fieldworkerid|
   RestClient::Request.execute(method: :get,
                               user: SPRING_SECURITY_USER_NAME,
                               password: SPRING_SECURITY_USER_PASSWORD,
-                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/devices/byEmployee/getPhoneDevice/#{fieldworkerid}") do |field_worker_phone_device_response, _request, _result, &_block|
+                              url: "http://#{CENSUS_FSDR_HOST}:#{CENSUS_FSDR_PORT}/devices/byEmployee/getPhoneDevice/#{fieldworkerid}") do |field_worker_phone_device_response, _request, _result, &_block|
     unless field_worker_phone_device_response.empty?
       field_worker_phone_device = JSON.parse(field_worker_phone_device_response) unless field_worker_phone_device_response.code == 404
     end
@@ -103,7 +103,7 @@ get '/fieldforce/historyById/:fieldworkerid' do |fieldworkerid|
   RestClient::Request.execute(method: :get,
                               user: SPRING_SECURITY_USER_NAME,
                               password: SPRING_SECURITY_USER_PASSWORD,
-                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/fieldforce/historyById/#{role}/#{fieldworkerid}") do |field_worker_history_response, _request, _result, &_block|
+                              url: "http://#{CENSUS_FSDR_HOST}:#{CENSUS_FSDR_PORT}/fieldforce/historyById/#{role}/#{fieldworkerid}") do |field_worker_history_response, _request, _result, &_block|
     unless field_worker_history_response.empty?
       field_worker_history = JSON.parse(field_worker_history_response) unless field_worker_history_response.code == 404
     end
@@ -112,7 +112,7 @@ get '/fieldforce/historyById/:fieldworkerid' do |fieldworkerid|
   RestClient::Request.execute(method: :get,
                               user: SPRING_SECURITY_USER_NAME,
                               password: SPRING_SECURITY_USER_PASSWORD,
-                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/jobRoles/historyById/#{fieldworkerid}") do |field_worker_job_roles_response, _request, _result, &_block|
+                              url: "http://#{CENSUS_FSDR_HOST}:#{CENSUS_FSDR_PORT}/jobRoles/historyById/#{fieldworkerid}") do |field_worker_job_roles_response, _request, _result, &_block|
     unless field_worker_job_roles_response.empty?
       field_worker_job_roles_history = JSON.parse(field_worker_job_roles_response) unless field_worker_job_roles_response.code == 404
     end
