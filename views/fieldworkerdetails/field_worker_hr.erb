@@ -41,18 +41,20 @@
             <td>-</td>
           <% end %>
         </tr>
-        <tr>
-          <th>
-            <% if field_worker_details.has_key?('telephoneNumberContact1') %>
-              Phone Number
+        <% if field_worker_phone_device.any? %>
+          <tr>
+            <% if field_worker_phone_device.has_key?('fieldDevicePhoneNumber') %>
+              <th>
+                ONS Mobile Number
+              </th>
             <% end %>
-          </th>
-          <% if field_worker_details['telephoneNumberContact1'].present? %>
-            <td><%= h field_worker_details['telephoneNumberContact1'] %></td>
-          <% else %>
-            <td>-</td>
-          <% end %>
-        </tr>
+            <% if field_worker_phone_device['fieldDevicePhoneNumber'].present? %>
+              <td><%= h field_worker_phone_device['fieldDevicePhoneNumber'] %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+          </tr>
+        <% end %>
       </table>
     <% end %>
   </div>
@@ -65,7 +67,7 @@
         <tr>
           <th>
             <% if field_worker_details.has_key?('telephoneNumberContact1') %>
-              Phone Number 1
+              Personal Mobile Number
             <% end %>
           </th>
           <% if field_worker_details['telephoneNumberContact1'].present? %>
@@ -178,6 +180,18 @@
           </th>
           <% if field_worker_job_roles['crStatus'].present? %>
             <td><%= h field_worker_job_roles['crStatus'] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+        </tr>
+        <tr>
+          <th>
+            <% if field_worker_job_roles.has_key?('contractStartDate') %>
+              Operational Start Date
+            <% end %>
+          </th>
+          <% if field_worker_job_roles['contractStartDate'].present? %>
+            <td><%= h field_worker_job_roles['contractStartDate'] %></td>
           <% else %>
             <td>-</td>
           <% end %>
@@ -300,43 +314,6 @@
           <% end %>
         </tr>
       </table>
-    <% end %>
-  </div>
-
-
-  <div class="emp-device-details">
-    <% unless field_worker_devices.nil? %>
-      <p class="emp-headers">Devices for Field Worker</p>
-      <table class="primary">
-        <thead class="primary">
-        <tr>
-          <% if field_worker_devices[0].has_key?('fieldDevicePhoneNumber') %>
-            <th>Device Phone Number</th>
-          <% end %>
-          <% if field_worker_devices[0].has_key?('deviceType') %>
-            <th>Device Type</th>
-          <% end %>
-        </tr>
-        </thead>
-        <tbody class="primary">
-        <% field_worker_devices.each_with_index do |field_worker_devices| %>
-          <tr>
-            <% if field_worker_devices['fieldDevicePhoneNumber'].present? %>
-              <td><%= h field_worker_devices['fieldDevicePhoneNumber'] %></td>
-            <% else %>
-              <td>-</td>
-            <% end %>
-            <% if field_worker_devices['deviceType'].present? %>
-              <td><%= h field_worker_devices['deviceType'] %></td>
-            <% else %>
-              <td>-</td>
-            <% end %>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    <% else %>
-      Field Worker has no allocated devices
     <% end %>
   </div>
 </div>

@@ -20,7 +20,7 @@ post '/signin/?' do
                                 user: SPRING_SECURITY_USER_NAME,
                                 password: SPRING_SECURITY_USER_PASSWORD,
                                 url: "http://#{CENSUS_FSDR_HOST}:#{CENSUS_FSDR_PORT}/userAuth/checkCredentials?password=#{params[:password]}&username=#{params[:username]}") do |userauth_response, _request, _result, &_block|
-      results = JSON.parse(userauth_response) unless userauth_response.code == 404 || userauth_response.code == 401
+      results = JSON.parse(userauth_response) unless userauth_response.code == 404 || userauth_response.code == 401 || userauth_response.code == 400
       if !results.nil?
         session.clear
         session[:valid_token] = true
