@@ -5,38 +5,85 @@
   Details for Field Worker
 <% end %>
 
-<table class="primary">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Forename</th>
-      <th>Surname</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
+  <% if searchedAssignment != '' %>
     <% results.each_with_index do |result| %>
-      <tr>
-        <% if result['uniqueEmployeeId'].present? %>
-          <td><%=h result['uniqueEmployeeId'] %></td>
-        <% else %>
-          <td>-</td>
+      <% if result['jobRoles'].present? %>
+        <% jobroles = result['jobRoles'] %>
+        <% jobrole = jobroles.max_by{ |id| id['id']} %>
+        <% if jobrole['assignmentStatus'] != searchedAssignment %>
+          <% @notToInclude = result['uniqueEmployeeId'] %>
         <% end %>
-        <% if result['firstName'].present? %>
-          <td><%=h result['firstName'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <% if result['surname'].present? %>
-          <td><%=h result['surname'] %></td>
-        <% else %>
-          <td>-</td>
-        <% end %>
-        <td><a href="/fieldforce/<%=result['uniqueEmployeeId'] %>">View Field Worker</a></td>
-    </tr>
+      <% end %>
     <% end %>
-  </tbody>
-</table>
+  <% else %>
+    <% @notToInclude = '' %>
+  <% end %>
+
+   <table class="primary">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Forename</th>
+        <th>Surname</th>
+        <th>Job Role ID</th>
+        <th>Job Role</th>
+        <th>Area</th>
+        <th>Assignment Status</th>
+        <th>Record ID</th>
+        <th>Employee Details</th>
+        <th>Employee History</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% results.each_with_index do |result| %>
+      <% if result['uniqueEmployeeId'] != @notToInclude %>
+      <tr>
+          <% if result['uniqueEmployeeId'].present? %>
+            <td><%=h result['uniqueEmployeeId'] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+          <% if result['firstName'].present? %>
+            <td><%=h result['firstName'] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+          <% if result['surname'].present? %>
+            <td><%=h result['surname'] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+          <% if result['jobRoles'].present? %>
+            <% jobroles = result['jobRoles'] %>
+            <% jobrole = jobroles.max_by{ |id| id['id']} %>
+            <% if jobrole['uniqueRoleId'].present? %>
+              <td><%=h jobrole['uniqueRoleId'] %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+            <% if jobrole['jobRole'].present? %>
+              <td><%=h jobrole['jobRole'] %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+            <% if jobrole['areaLocation'].present? %>
+              <td><%=h jobrole['areaLocation'] %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+            <% if jobrole['assignmentStatus'].present? %>
+              <td><%=h jobrole['assignmentStatus'] %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+          <% end %>
+          <td><a href="/fieldforce/<%=result['uniqueEmployeeId'] %>">View Field Worker</a></td>
+          <td><a href="/fieldforce/historyById/<%=result['uniqueEmployeeId'] %>">View Field Worker History</a></td>
+          </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+      </table>
 <% else %>
-No Field Worker for searched terms
+  No Field Worker for searched terms
 <% end %>

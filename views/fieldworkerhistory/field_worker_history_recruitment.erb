@@ -1,6 +1,6 @@
 <%= erb :menu, locals: {pageid: 'home'} %>
 
-<% unless field_worker_history_table.nil? %>
+<% unless field_worker_history_table.any? %>
   History for Field Worker
   <table class="primary">
     <thead class="primary">
@@ -24,7 +24,7 @@
         <th>ONS ID</th>
       <% end %>
       <% if field_worker_history_table[0].has_key?('telephoneNumberContact1') %>
-        <th>Telephone Number</th>
+        <th>Personal Mobile Number Number</th>
       <% end %>
       <% if field_worker_history_table[0].has_key?('status') %>
         <th>Status</th>
@@ -297,7 +297,7 @@
           <% if field_worker_history['mobileStaff'] == false %>
           <td>Yes</td>
           <% else %>
-          <td>No</td>
+            <td>No</td>
           <% end %>
         <% else %>
           <td>-</td>

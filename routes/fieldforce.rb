@@ -39,6 +39,7 @@ get '/fieldforce/:fieldworkerid' do |fieldworkerid|
   authenticate!
   field_worker_details = []
   field_worker_devices = []
+  field_worker_phone_device = []
   field_worker_job_roles = []
   role = session[:role]
 
@@ -60,6 +61,10 @@ get '/fieldforce/:fieldworkerid' do |fieldworkerid|
     end
   end
 
+  if field_worker_devices.any?
+    field_worker_devices_html = Json2htmltable.create_table(field_worker_devices)
+  end
+
   RestClient::Request.execute(method: :get,
                               user: SPRING_SECURITY_USER_NAME,
                               password: SPRING_SECURITY_USER_PASSWORD,
@@ -69,17 +74,22 @@ get '/fieldforce/:fieldworkerid' do |fieldworkerid|
     end
   end
 
-
-  # if field_worker_devices.any?
-  #   field_worker_devices_html = Json2htmltable.create_table(field_worker_devices)
-  # end
+  RestClient::Request.execute(method: :get,
+                              user: SPRING_SECURITY_USER_NAME,
+                              password: SPRING_SECURITY_USER_PASSWORD,
+                              url: 'http://' + CENSUS_FSDR_HOST + ':' + CENSUS_FSDR_PORT + "/devices/byEmployee/getPhoneDevice/#{fieldworkerid}") do |field_worker_phone_device_response, _request, _result, &_block|
+    unless field_worker_phone_device_response.empty?
+      field_worker_phone_device = JSON.parse(field_worker_phone_device_response) unless field_worker_phone_device_response.code == 404
+    end
+  end
 
   field_worker_erb = 'fieldworkerdetails/field_worker_' + role
 
   erb :"#{field_worker_erb}", layout: :sidebar_layout, locals: { title:'Worker Details',
                                                                  field_worker_details: field_worker_details,
                                                                  field_worker_job_roles: field_worker_job_roles,
-                                                                 field_worker_devices: field_worker_devices}
+                                                                 field_worker_devices: field_worker_devices_html,
+                                                                 field_worker_phone_device: field_worker_phone_device}
 
 end
 

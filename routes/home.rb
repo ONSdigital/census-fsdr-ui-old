@@ -64,6 +64,7 @@ get '/' do
   authenticate!
   erb :index, locals: { title: 'Home' }
   fieldforce = []
+  jobRoles = []
   viewtype = session[:role]
   RestClient::Request.execute(method: :get,
                               user: SPRING_SECURITY_USER_NAME,
@@ -73,8 +74,20 @@ get '/' do
       fieldforce = JSON.parse(fieldforce_response) unless fieldforce_response.code == 404
     end
 
+    fieldforce.each_with_index do |fieldmember|
+        RestClient::Request.execute(method: :get,
+                                    user: SPRING_SECURITY_USER_NAME,
+                                    password: SPRING_SECURITY_USER_PASSWORD,
+                                    url: "http://#{CENSUS_FSDR_HOST}:#{CENSUS_FSDR_PORT}/jobRoles/byEmployee/#{fieldmember['uniqueEmployeeId']}") do |fieldforce_response, _request, _result, &_block|
+          unless fieldforce_response.empty?
+            jobRoles = JSON.parse(fieldforce_response) unless fieldforce_response.code == 404
+          end
+        end
+    end
+
     erb :field_force, locals: { title: 'Field Force view for: ' + viewtype.upcase,
                                 fieldforce: fieldforce,
+                                jobRoles: jobRoles,
                                 viewtype: viewtype }
   end
 end
@@ -113,12 +126,14 @@ end
 # Search Results
 post '/searchresults' do
   authenticate!
-  results         = []
-  first_name      = params[:firstname]
-  surname         = params[:surname]
-  job_role_id     = params[:jobroleid]
-  area_code       = params[:areacode]
-  id_badge_number = params[:idbadgenumber]
+  results           = []
+  first_name        = params[:firstname]
+  surname           = params[:surname]
+  job_role_id       = params[:jobroleid]
+  area_code         = params[:areacode]
+  id_badge_number   = params[:idbadgenumber]
+  job_role          = params[:jobRole]
+  assignment_status = params[:assignmentStatus]
 
   multi_query_flag = false
   search_params = 'employeeSearch?'
@@ -151,12 +166,33 @@ post '/searchresults' do
     search_params = search_params + 'idBadgeNo=' + id_badge_number
     multi_query_flag = true
   end
+
+  unless job_role.empty?
+    search_params += '&' if multi_query_flag
+    search_params = search_params + 'jobRole=' + job_role
+    multi_query_flag = true
+  end
+
+  if assignment_status == '--'
+    assignment_status = ''
+  end
+
+  unless assignment_status.empty?
+    search_params += '&' if multi_query_flag
+    search_params = search_params + 'assignmentStatus=' + assignment_status
+  end
+
+
   RestClient::Request.execute(method: :get,
                               user: SPRING_SECURITY_USER_NAME,
                               password: SPRING_SECURITY_USER_PASSWORD,
                               url: "http://#{CENSUS_FSDR_HOST}:#{CENSUS_FSDR_PORT}/fieldforce/#{search_params}") do |fieldforce_response, _request, _result, &_block|
-    results = JSON.parse(fieldforce_response) unless fieldforce_response.code == 404
-    erb :searchresults, locals: { title: 'Search Results',
-                                  results: results }
+    unless fieldforce_response.empty?
+      results = JSON.parse(fieldforce_response) unless fieldforce_response.code == 404
+    end
   end
+
+  erb :searchresults, locals: { title: 'Search Results',
+                                results: results,
+                                searchedAssignment: assignment_status}
 end

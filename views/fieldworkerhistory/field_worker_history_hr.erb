@@ -1,6 +1,6 @@
 ]<%= erb :menu, locals: {pageid: 'home'} %>
 
-<% unless field_worker_history_table.nil? %>
+<% if field_worker_history_table.any? %>
   History for Field Worker
   <table class="primary">
     <thead class="primary">
