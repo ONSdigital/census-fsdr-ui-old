@@ -64,7 +64,6 @@ get '/' do
   authenticate!
   erb :index, locals: { title: 'Home' }
   fieldforce = []
-  jobRoles = []
   viewtype = session[:role]
   RestClient::Request.execute(method: :get,
                               user: SPRING_SECURITY_USER_NAME,
@@ -74,20 +73,8 @@ get '/' do
       fieldforce = JSON.parse(fieldforce_response) unless fieldforce_response.code == 404
     end
 
-    fieldforce.each_with_index do |fieldmember|
-        RestClient::Request.execute(method: :get,
-                                    user: SPRING_SECURITY_USER_NAME,
-                                    password: SPRING_SECURITY_USER_PASSWORD,
-                                    url: "http://#{CENSUS_FSDR_HOST}:#{CENSUS_FSDR_PORT}/jobRoles/byEmployee/#{fieldmember['uniqueEmployeeId']}") do |fieldforce_response, _request, _result, &_block|
-          unless fieldforce_response.empty?
-            jobRoles = JSON.parse(fieldforce_response) unless fieldforce_response.code == 404
-          end
-        end
-    end
-
     erb :field_force, locals: { title: 'Field Force view for: ' + viewtype.upcase,
                                 fieldforce: fieldforce,
-                                jobRoles: jobRoles,
                                 viewtype: viewtype }
   end
 end
