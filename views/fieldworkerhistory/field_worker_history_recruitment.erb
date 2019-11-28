@@ -1,6 +1,6 @@
 <%= erb :menu, locals: {pageid: 'home'} %>
 
-<% unless field_worker_history_table.any? %>
+<% if field_worker_history_table.any? %>
   History for Field Worker
   <table class="primary">
     <thead class="primary">
@@ -310,7 +310,7 @@
   No History for Field Worker
 <% end %>
 <br>
-<% unless field_worker_job_roles_history.nil? %>
+<% if field_worker_job_roles_history.any? %>
   Job Role History for Field Worker
   <table class="primary">
     <thead>
@@ -341,5 +341,6 @@
     </tbody>
   </table>
 <% else %>
+  <br>
   Field Worker has no Job Role History
 <% end %>
