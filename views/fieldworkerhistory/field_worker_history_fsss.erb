@@ -1,9 +1,20 @@
 <%= erb :menu, locals: {pageid: 'home'} %>
+<% require 'date' %>
+
+<% job_role_active_check = field_worker_job_roles %>
+<% job_role_active_check.each do |is_active| %>
+  <% if is_active['active'] == false %>
+    <% @is_active_present = false %>
+    <% break %>
+  <% else %>
+    <% @is_active_present = true %>
+  <% end %>
+<% end %>
 
 <% if field_worker_history_table.any?%>
   History for Field Worker
   <table class="primary">
-    <thead class="primary">
+    <thead>
     <tr>
       <% if field_worker_history_table[0].has_key?('ingestDate') %>
         <th>Ingest Date</th>
@@ -60,7 +71,7 @@
         <th>Emergency Contact 2 - Second Name</th>
       <% end %>
       <% if field_worker_history_table[0].has_key?('emergencyContactMobileNo2') %>
-        <th>Emergency Contact 1- Mobile No</th>
+        <th>Emergency Contact 2- Mobile No</th>
       <% end %>
       <% if field_worker_history_table[0].has_key?('anyLanguagesSpoken') %>
         <th>Languages Spoken</th>
@@ -76,11 +87,13 @@
       <% end %>
     </tr>
     </thead>
-    <tbody class="primary">
+    <tbody>
     <% field_worker_history_table.each_with_index do |field_worker_history| %>
       <tr>
         <% if field_worker_history['ingestDate'].present? %>
-          <td><%= h field_worker_history['ingestDate'] %></td>
+          <% ingestDateTime = field_worker_history['ingestDate'].to_s  %>
+          <% formattedStartDate = DateTime.parse(ingestDateTime).strftime("%d-%m-%Y %T") %>
+          <td><%=h formattedStartDate %></td>
         <% else %>
           <td>-</td>
         <% end %>
@@ -195,8 +208,6 @@
           <% else %>
           <td>No</td>
           <% end %>
-        <% else %>
-          <td>-</td>
         <% end %>
       </tr>
     <% end %>
@@ -206,37 +217,74 @@
   No History for Field Worker
 <% end %>
 <br>
-<% if field_worker_job_roles_history.any? %>
+<% if field_worker_job_roles.any? && @is_active_present == false %>
   Job Role History for Field Worker
   <table class="primary">
     <thead>
-    <tr>
-      <% if field_worker_job_roles_history[0].has_key?('contractStartDate') %>
+      <tr>
+      <% if field_worker_job_roles[0].has_key?('contractStartDate') %>
         <th>Operational Start Date</th>
       <% end %>
-      <% if field_worker_job_roles_history[0].has_key?('operationalEndDate') %>
+      <% if field_worker_job_roles[0].has_key?('operationalEndDate') %>
         <th>Operational End Date</th>
       <% end %>
-    </tr>
+      <% if field_worker_job_roles[0].has_key?('uniqueRoleId') %>
+        <th>Job Role ID</th>
+      <% end %>
+      <% if field_worker_job_roles[0].has_key?('jobRole') %>
+        <th>Job Role</th>
+      <% end %>
+      <% if field_worker_job_roles[0].has_key?('areaLocation') %>
+        <th>Area</th>
+      <% end %>
+      <% if field_worker_job_roles[0].has_key?('assignmentStatus') %>
+        <th>Assignment Status</th>
+      <% end %>
+      </tr>
     </thead>
     <tbody>
-    <% field_worker_job_roles_history.each_with_index do |field_worker_job_roles_history| %>
-      <tr>
-        <% if field_worker_job_roles_history['contractStartDate'].present? %>
-          <td><%= h field_worker_job_roles_history['contractStartDate'] %></td>
+    <% field_worker_job_roles.each_with_index do |jobroles| %>
+    <tr>
+      <% if jobroles['active'] ==  false %>
+        <% if jobroles['contractStartDate'].present? %>
+          <% contrStartDateTime = jobroles['contractStartDate'].to_s  %>
+          <% formattedStartDate = Date.parse(contrStartDateTime).strftime("%d-%m-%Y") %>
+          <td><%=h formattedStartDate %></td>
         <% else %>
           <td>-</td>
         <% end %>
-        <% if field_worker_job_roles_history['operationalEndDate'].present? %>
-          <td><%= h field_worker_job_roles_history['operationalEndDate'] %></td>
+        <% if jobroles['operationalEndDate'].present? %>
+          <% contrEndDateTime = jobroles['operationalEndDate'].to_s  %>
+          <% formattedEndDate = Date.parse(contrEndDateTime).strftime("%d-%m-%Y") %>
+          <td><%=h formattedEndDate %></td>
         <% else %>
           <td>-</td>
         <% end %>
+        <% if jobroles['uniqueRoleId'].present? %>
+          <td><%=h jobroles['uniqueRoleId'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if jobroles['jobRole'].present? %>
+          <td><%=h jobroles['jobRole'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if jobroles['areaLocation'].present? %>
+          <td><%=h jobroles['areaLocation'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if jobroles['assignmentStatus'].present? %>
+          <td><%=h jobroles['assignmentStatus'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+      <% end %>
       </tr>
-    <% end %>
+      <% end %>
     </tbody>
   </table>
 <% else %>
-  <br>
   Field Worker has no Job Role History
 <% end %>

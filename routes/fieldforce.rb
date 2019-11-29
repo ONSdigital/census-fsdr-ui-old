@@ -96,7 +96,7 @@ end
 # Get Individual Field Worker History Details
 get '/fieldforce/historyById/:fieldworkerid' do |fieldworkerid|
   authenticate!
-  field_worker_job_roles_history = []
+  field_worker_job_roles= []
   field_worker_history = []
   role = session[:role]
 
@@ -112,9 +112,9 @@ get '/fieldforce/historyById/:fieldworkerid' do |fieldworkerid|
   RestClient::Request.execute(method: :get,
                               user: SPRING_SECURITY_USER_NAME,
                               password: SPRING_SECURITY_USER_PASSWORD,
-                              url: "http://#{CENSUS_FSDR_HOST}:#{CENSUS_FSDR_PORT}/jobRoles/historyById/#{fieldworkerid}") do |field_worker_job_roles_response, _request, _result, &_block|
+                              url: "http://#{CENSUS_FSDR_HOST}:#{CENSUS_FSDR_PORT}/jobRoles/byEmployee/#{fieldworkerid}") do |field_worker_job_roles_response, _request, _result, &_block|
     unless field_worker_job_roles_response.empty?
-      field_worker_job_roles_history = JSON.parse(field_worker_job_roles_response) unless field_worker_job_roles_response.code == 404
+      field_worker_job_roles = JSON.parse(field_worker_job_roles_response) unless field_worker_job_roles_response.code == 404
     end
   end
 
@@ -122,5 +122,5 @@ get '/fieldforce/historyById/:fieldworkerid' do |fieldworkerid|
 
   erb :"#{field_worker_history_erb}", layout: :sidebar_layout, locals: { title: 'Field Worker History',
                                                                  field_worker_history_table: field_worker_history,
-                                                                 field_worker_job_roles_history: field_worker_job_roles_history}
+                                                                 field_worker_job_roles: field_worker_job_roles}
 end

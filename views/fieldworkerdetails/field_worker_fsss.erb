@@ -264,7 +264,9 @@
             <% end %>
           </th>
           <% if field_worker_job_roles['contractStartDate'].present? %>
-            <td><%= h field_worker_job_roles['contractStartDate'] %></td>
+            <% contrEndDateTime = field_worker_job_roles['operationalEndDate'].to_s  %>
+            <% formattedEndDate = Date.parse(contrEndDateTime).strftime("%d-%m-%Y") %>
+            <td><%=h formattedEndDate %></td>
           <% else %>
             <td>-</td>
           <% end %>
@@ -276,7 +278,9 @@
             <% end %>
           </th>
           <% if field_worker_job_roles['contractEndDate'].present? %>
-            <td><%= h field_worker_job_roles['contractEndDate'] %></td>
+            <% contrEndDateTime = field_worker_job_roles['contractEndDate'].to_s  %>
+            <% formattedEndDate = Date.parse(contrEndDateTime).strftime("%d-%m-%Y") %>
+            <td><%=h formattedEndDate %></td>
           <% else %>
             <td>-</td>
           <% end %>
@@ -288,7 +292,9 @@
             <% end %>
           </th>
           <% if field_worker_job_roles['contractStartDate'].present? %>
-            <td><%= h field_worker_job_roles['contractStartDate'] %></td>
+            <% contrEndDateTime = field_worker_job_roles['operationalEndDate'].to_s  %>
+            <% formattedEndDate = Date.parse(contrEndDateTime).strftime("%d-%m-%Y") %>
+            <td><%=h formattedEndDate %></td>
           <% else %>
             <td>-</td>
           <% end %>
@@ -300,7 +306,9 @@
             <% end %>
           </th>
           <% if field_worker_job_roles['operationalEndDate'].present? %>
-            <td><%= h field_worker_job_roles['operationalEndDate'] %></td>
+            <% contrEndDateTime = field_worker_job_roles['operationalEndDate'].to_s  %>
+            <% formattedEndDate = Date.parse(contrEndDateTime).strftime("%d-%m-%Y") %>
+            <td><%=h formattedEndDate %></td>
           <% else %>
             <td>-</td>
           <% end %>
@@ -312,7 +320,9 @@
             <% end %>
           </th>
           <% if field_worker_details['ingestDate'].present? %>
-            <td><%= h field_worker_details['ingestDate'] %></td>
+            <% ingestDateTime = field_worker_details['ingestDate'].to_s  %>
+            <% formattedStartDate = DateTime.parse(ingestDateTime).strftime("%d-%m-%Y %T") %>
+            <td><%=h formattedStartDate %></td>
           <% else %>
             <td>-</td>
           <% end %>

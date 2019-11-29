@@ -117,10 +117,12 @@ post '/searchresults' do
   first_name        = params[:firstname]
   surname           = params[:surname]
   job_role_id       = params[:jobroleid]
+  area              = params[:area]
   area_code         = params[:areacode]
   id_badge_number   = params[:idbadgenumber]
   job_role          = params[:jobRole]
   assignment_status = params[:assignmentStatus]
+  jobRoleSearched   = []
 
   multi_query_flag = false
   search_params = 'employeeSearch?'
@@ -142,6 +144,12 @@ post '/searchresults' do
     multi_query_flag = true
   end
 
+  unless area.empty?
+    search_params += '&' if multi_query_flag
+    search_params = search_params + 'area=' + area
+    multi_query_flag = true
+  end
+
   unless area_code.empty?
     search_params += '&' if multi_query_flag
     search_params = search_params + 'areaCode=' + area_code
@@ -158,6 +166,7 @@ post '/searchresults' do
     search_params += '&' if multi_query_flag
     search_params = search_params + 'jobRole=' + job_role
     multi_query_flag = true
+    jobRoleSearched = job_role
   end
 
   if assignment_status == '--'
@@ -181,5 +190,6 @@ post '/searchresults' do
 
   erb :searchresults, locals: { title: 'Search Results',
                                 results: results,
+                                jobRoleSearched: jobRoleSearched,
                                 searchedAssignment: assignment_status}
 end
