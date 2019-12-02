@@ -10,6 +10,7 @@
       <th>ID</th>
       <th>Forename</th>
       <th>Surname</th>
+      <th>Badge Number</th>
       <th>Job Role ID</th>
       <th>Job Role</th>
       <th>Job Role Active?</th>
@@ -34,6 +35,11 @@
         <% end %>
         <% if result['surname'].present? %>
           <td><%=h result['surname'] %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+        <% if result['idBadgeNo'].present? %>
+          <td><%=h result['idBadgeNo'] %></td>
         <% else %>
           <td>-</td>
         <% end %>
