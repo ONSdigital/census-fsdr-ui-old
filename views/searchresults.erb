@@ -46,12 +46,23 @@
         <% if result['jobRoles'].present? %>
           <% jobroles = result['jobRoles'] %>
           <% jobroles.each do |jobrole| %>
-            <% if jobrole['active'] == true %>
-              <% @activejobrole = jobrole %>
-              <% break %>
+            <% if searchedAssignment== '' %>
+              <% if jobrole['active'] == true %>
+                <% @activejobrole = jobrole %>
+                <% break %>
+              <% else %>
+                <% @activejobrole = jobroles.max_by{ |id| id['id']} %>
+                <% break %>
+              <% end %>
             <% else %>
-              <% @activejobrole = jobroles.max_by{ |id| id['id']} %>
-              <% break %>
+              <% if jobrole['active'] == true && jobrole['assignmentStatus'] == searchedAssignment%>
+                <% @activejobrole = jobrole %>
+                <% break %>
+              <% else %>
+                <% next if jobrole['assignmentStatus'] != searchedAssignment%>
+                <% @activejobrole = jobrole %>
+                <% break %>
+              <% end %>
             <% end %>
           <% end %>
           <% if @activejobrole['uniqueRoleId'].present? %>

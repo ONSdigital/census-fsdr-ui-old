@@ -161,6 +161,8 @@ post '/searchresults' do
     search_params = search_params + 'idBadgeNo=' + id_badge_number
     multi_query_flag = true
   end
+  
+  job_role = '' if job_role == '--'
 
   unless job_role.empty?
     search_params += '&' if multi_query_flag
@@ -169,9 +171,7 @@ post '/searchresults' do
     jobRoleSearched = job_role
   end
 
-  if assignment_status == '--'
-    assignment_status = ''
-  end
+  assignment_status = '' if assignment_status == '--'
 
   unless assignment_status.empty?
     search_params += '&' if multi_query_flag
